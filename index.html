@@ -1,0 +1,1406 @@
+<!-- Planeador Didáctico · Cultura Digital I · Preparatoria No. 50 UAGro (NEM / MCCEMS) v2 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planeador Cultura Digital I · Prepa 50 UAGro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16263f; --navy-2:#1f365a; --paper:#f5f4ef; --card:#ffffff;
+    --ink:#15202e; --muted:#5d6b7d; --line:#e3e0d6;
+    --red:#c1121f; --red-soft:#fbe9ea; --teal:#0c7c8c; --teal-soft:#e3f2f4;
+    --amber:#b8770f; --amber-soft:#fdf2dd; --green:#137a4a;
+    --r:14px; --shadow:0 1px 0 rgba(0,0,0,.04),0 10px 30px -18px rgba(20,40,70,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+  header.top{background:var(--navy);color:#eef1f6;border-bottom:3px solid var(--red)}
+  .top .wrap{display:flex;align-items:center;gap:16px;padding:18px}
+  .crest{width:42px;height:42px;border-radius:9px;background:linear-gradient(140deg,#21385d,#0c7c8c);display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;font-size:20px;color:#fff;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+  .top h1{font-family:'Space Grotesk';font-weight:600;font-size:1.06rem;margin:0;letter-spacing:.2px}
+  .top .sub{font-size:.74rem;color:#a9b8cf;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+  .top .right{margin-left:auto;text-align:right;font-size:.72rem;color:#9fb0c8;line-height:1.35}
+
+  nav.tabs{position:sticky;top:0;z-index:30;background:rgba(245,244,239,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 18px}
+  .tab{appearance:none;border:0;background:none;font-family:'Space Grotesk';font-size:.85rem;font-weight:500;color:var(--muted);padding:14px 12px 12px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent}
+  .tab:hover{color:var(--ink)}
+  .tab.active{color:var(--navy);border-bottom-color:var(--red)}
+  .tab .n{font-family:'JetBrains Mono';font-size:.7rem;color:var(--teal);margin-right:5px}
+
+  main{padding:26px 0 80px}
+  .view{display:none;animation:fade .25s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+  h2.sec{font-family:'Space Grotesk';font-weight:600;font-size:1.5rem;margin:.1rem 0 .3rem;letter-spacing:-.01em}
+  .lead{color:var(--muted);max-width:64ch;margin:0 0 22px;font-size:.95rem}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+  .pad{padding:20px}
+  .grid{display:grid;gap:16px}
+  @media(min-width:760px){.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}}
+
+  label.fld{display:block;font-size:.74rem;font-weight:600;color:var(--navy-2);text-transform:uppercase;letter-spacing:.05em;margin:0 0 5px}
+  input,select,textarea{width:100%;font-family:inherit;font-size:.92rem;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+  .field{margin-bottom:14px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row>*{flex:1;min-width:150px}
+
+  .btn{appearance:none;border:0;border-radius:10px;font-family:'Space Grotesk';font-weight:600;font-size:.86rem;padding:10px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:transform .08s,filter .15s}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--red);color:#fff}
+  .btn.primary:hover{filter:brightness(1.06)}
+  .btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--navy-2)}
+  .btn.teal{background:var(--teal);color:#fff}
+  .btn.green{background:var(--green);color:#fff}
+  .btn.sm{padding:7px 11px;font-size:.78rem}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono';font-size:.7rem;font-weight:500;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted)}
+  .pill.teal{background:var(--teal-soft);color:#075663;border-color:#bfe2e7}
+  .pill.red{background:var(--red-soft);color:#8a0e18;border-color:#f3cdd0}
+  .pill.amber{background:var(--amber-soft);color:#7d5208;border-color:#f0dcb0}
+  .pill.green{background:#e3f3ea;color:#0c5e38;border-color:#bfe2cd}
+
+  .progress{height:9px;background:#ece9df;border-radius:99px;overflow:hidden}
+  .progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--red));border-radius:99px;transition:width .5s ease}
+  .pwrap{display:flex;align-items:center;gap:10px}
+  .pwrap .num{font-family:'JetBrains Mono';font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+  .unit{border-left:5px solid var(--navy-2)}
+  .unit.u2{border-left-color:var(--teal)}
+  .unit.u3{border-left-color:var(--red)}
+  .unit h3{font-family:'Space Grotesk';font-weight:600;font-size:1.12rem;margin:0 0 4px;color:var(--navy)}
+  .unit .meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .accordion summary{cursor:pointer;font-weight:600;font-size:.84rem;color:var(--navy-2);padding:8px 0;list-style:none;display:flex;align-items:center;gap:8px}
+  .accordion summary::-webkit-details-marker{display:none}
+  .accordion summary::before{content:"+";font-family:'JetBrains Mono';color:var(--teal);font-weight:700}
+  .accordion[open] summary::before{content:"–"}
+  .toc{font-size:.86rem;color:var(--muted);margin:4px 0 10px;padding-left:2px}
+  .toc b{color:var(--ink);font-weight:600}
+  .toc .li{padding:2px 0;border-bottom:1px dashed #ece9df}
+
+  .timeline{position:relative;margin:14px 0 0;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--teal),var(--red))}
+  .moment{position:relative;margin-bottom:18px}
+  .moment::before{content:"";position:absolute;left:-22px;top:4px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--teal)}
+  .moment.dev::before{border-color:var(--navy-2)}
+  .moment.cierre::before{border-color:var(--red)}
+  .moment .h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .moment .h b{font-family:'Space Grotesk';font-size:.98rem;color:var(--navy)}
+  .moment .min{font-family:'JetBrains Mono';font-size:.72rem;color:var(--muted)}
+  .moment ul{margin:7px 0 0;padding-left:18px}
+  .moment li{margin:3px 0;font-size:.92rem}
+  .lab{margin-top:8px;background:var(--teal-soft);border:1px solid #bfe2e7;border-radius:10px;padding:10px 12px;font-size:.9rem}
+  .lab b{color:#075663}
+  .deton{background:#fff7ea;border:1px solid #f0dcb0;border-radius:10px;padding:9px 12px;font-size:.92rem;margin:4px 0 0}
+  .deton b{color:#7d5208}
+  .tip{background:#eef4ff;border:1px solid #cfe0f7;border-radius:10px;padding:9px 12px;font-size:.88rem;margin-top:8px}
+  .tip b{color:var(--navy-2)}
+
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.9rem;margin-top:6px}
+  .kv .k{color:var(--muted);font-weight:600}
+
+  .empty{text-align:center;color:var(--muted);padding:30px 14px;font-size:.92rem}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:11px 18px;border-radius:10px;font-size:.86rem;opacity:0;pointer-events:none;transition:.25s;z-index:60}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .strat{border-top:3px solid var(--teal)}
+  .strat h4{font-family:'Space Grotesk';margin:0 0 4px;font-size:1.02rem;color:var(--navy)}
+  .strat .when{font-size:.82rem;color:var(--muted);margin:6px 0}
+  .strat ol{margin:8px 0 0;padding-left:20px;font-size:.9rem}
+  .strat li{margin:3px 0}
+
+  .tool{border-top:3px solid var(--red)}
+  .tool h4{font-family:'Space Grotesk';margin:0;font-size:1.02rem;color:var(--navy)}
+  .tool .use{font-size:.89rem;margin:8px 0 6px}
+  .tool .where{font-size:.82rem;color:var(--muted)}
+
+  table.rub{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:10px}
+  table.rub th,table.rub td{border:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top}
+  table.rub th{background:var(--navy);color:#fff;font-family:'Space Grotesk';font-weight:500;font-size:.78rem}
+  table.rub td:first-child{font-weight:600;color:var(--navy-2);width:30%}
+
+  .savedrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+  .savedrow .t{flex:1}
+  .savedrow .t small{display:block;color:var(--muted);font-size:.76rem}
+
+  .toggle{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-weight:600;font-size:.85rem;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px}
+  .toggle.on{background:#e3f3ea;border-color:#bfe2cd;color:var(--green)}
+  .toggle .box{width:18px;height:18px;border-radius:5px;border:2px solid var(--muted);display:grid;place-items:center;font-size:12px;color:#fff}
+  .toggle.on .box{background:var(--green);border-color:var(--green)}
+
+  .note{font-size:.8rem;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:10px;padding:11px 13px;margin-top:14px}
+
+  @media print{
+    nav.tabs,header.top,.noprint{display:none!important}
+    .view{display:none!important}
+    #printarea{display:block!important}
+    body{background:#fff}
+    .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+  }
+  #printarea{display:none}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="crest">CD</div>
+    <div>
+      <h1>Planeador Didáctico · Cultura Digital&nbsp;I</h1>
+      <div class="sub">Preparatoria No. 50 · UAGro · NEM / MCCEMS</div>
+    </div>
+    <div class="right">
+      Plan 2023 NEM · Recurso Sociocognitivo<br>Ciclo 2025–2026 · Sept 2025–Ene 2026
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab active" data-v="panel"><span class="n">00</span>Panel</button>
+    <button class="tab" data-v="secuencias"><span class="n">01</span>Secuencias</button>
+    <button class="tab" data-v="plan"><span class="n">02</span>Plan de clase</button>
+    <button class="tab" data-v="modelos"><span class="n">03</span>Modelos</button>
+    <button class="tab" data-v="estrategias"><span class="n">04</span>Estrategias</button>
+    <button class="tab" data-v="herramientas"><span class="n">05</span>Herramientas</button>
+    <button class="tab" data-v="banco"><span class="n">06</span>Banco</button>
+    <button class="tab" data-v="evaluacion"><span class="n">07</span>Evaluación</button>
+    <button class="tab" data-v="guardados"><span class="n">08</span>Guardados</button>
+    <button class="tab" data-v="importar"><span class="n">09</span>Importar PDF</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- PANEL -->
+  <section class="view active" id="panel">
+    <div class="eyebrow">Encuadre y avance del curso</div>
+    <h2 class="sec">Panel del docente</h2>
+    <p class="lead">Captura una vez tus datos: se imprimen en cada plan. Abajo verás tu avance real del semestre (sesiones impartidas) y el panorama de las tres unidades.</p>
+
+    <div class="card pad" style="margin-bottom:20px;border-top:4px solid var(--teal)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+        <div class="eyebrow" style="margin:0">Avance global del semestre</div>
+        <div class="num mono" id="overallNum" style="color:var(--navy);font-weight:700"></div>
+      </div>
+      <div class="progress" style="margin-top:10px"><i id="overallBar" style="width:0%"></i></div>
+      <div id="overallUnits" class="grid g3" style="margin-top:16px"></div>
+    </div>
+
+    <div class="card pad" style="margin-bottom:20px">
+      <div class="grid g3">
+        <div class="field"><label class="fld">Docente</label><input id="d_doc" value="Lic. Jonatan Cervantes Juárez"></div>
+        <div class="field"><label class="fld">Escuela</label><input id="d_esc" value="Preparatoria No. 50"></div>
+        <div class="field"><label class="fld">CCT</label><input id="d_cct" value="12UBH0089B"></div>
+        <div class="field"><label class="fld">Lugar</label><input id="d_lugar" value="Tlacoachistlahuaca, Gro."></div>
+        <div class="field"><label class="fld">Grupo(s)</label><input id="d_grupo" placeholder="Ej. 101 / 102"></div>
+        <div class="field"><label class="fld">Turno</label><select id="d_turno"><option>Matutino</option><option>Vespertino</option></select></div>
+        <div class="field"><label class="fld">Espacio</label><input id="d_esp" value="Centro de cómputo"></div>
+        <div class="field"><label class="fld">No. de alumnos</label><input id="d_alum" type="number" placeholder="Ej. 35"></div>
+        <div class="field"><label class="fld">Equipos disponibles</label><input id="d_eq" type="number" placeholder="PCs en el lab"></div>
+      </div>
+      <button class="btn primary sm noprint" onclick="saveDatos()">Guardar datos del grupo</button>
+    </div>
+
+    <div class="note">📚 <b>Material de apoyo del alumno:</b> el libro <i>Cultura Digital I</i> (156 págs.) es la antología escaneada del curso; úsalo como lectura previa en las actividades de Estudio Independiente (HEI). Estructura, progresiones y evaluación provienen de tu <i>Secuencia Didáctica oficial 2025</i>.</div>
+  </section>
+
+  <!-- SECUENCIAS -->
+  <section class="view" id="secuencias">
+    <div class="eyebrow">Mapa curricular</div>
+    <h2 class="sec">Las tres unidades de progresión</h2>
+    <p class="lead">Cada unidad con su categoría, metas, horas, avance y contenido temático completo. Salta directo a planear cualquier unidad.</p>
+    <div class="grid" id="unitCards"></div>
+  </section>
+
+  <!-- PLAN DE CLASE -->
+  <section class="view" id="plan">
+    <div class="eyebrow">Generador sesión por sesión</div>
+    <h2 class="sec">Plan de clase (50 min)</h2>
+    <p class="lead">Elige unidad y sesión. La app arma un plan con pregunta detonadora, momentos Apertura–Desarrollo–Cierre, la herramienta digital concreta a usar, la actividad práctica en el lab, la tarea (HEI) y un consejo del especialista. Todo editable, guardable e imprimible.</p>
+
+    <div class="card pad noprint" style="margin-bottom:18px">
+      <div class="row">
+        <div><label class="fld">Unidad</label><select id="p_unit" onchange="loadSessions()"></select></div>
+        <div><label class="fld">Sesión</label><select id="p_sesion" onchange="renderPlan()"></select></div>
+        <div><label class="fld">Fecha</label><input id="p_fecha" type="date"></div>
+      </div>
+    </div>
+
+    <div id="planOut"></div>
+  </section>
+
+  <!-- MODELOS -->
+  <section class="view" id="modelos">
+    <div class="eyebrow">Propuestas modernas con sustento</div>
+    <h2 class="sec">Planes de clase modelo</h2>
+    <p class="lead">Seis propuestas listas para usar, diseñadas con metodologías activas que hoy funcionan con adolescentes (aprendizaje basado en retos, alfabetización mediática, microlearning, design thinking). Cada una indica su fundamento, la actividad completa y cómo se evalúa. Filtra por unidad e imprime la que necesites.</p>
+    <div class="card pad noprint" style="margin-bottom:16px">
+      <label class="fld">Filtrar por unidad</label>
+      <select id="md_unit" onchange="renderModelos()" style="max-width:280px">
+        <option value="0">Todas</option><option value="1">Unidad 1</option><option value="2">Unidad 2</option><option value="3">Unidad 3</option>
+      </select>
+    </div>
+    <div class="grid" id="modelosOut"></div>
+    <div class="note" style="margin-top:18px">📖 Fundamento basado en literatura educativa reciente (2025–2026) sobre aprendizaje basado en retos, alfabetización mediática e informacional (UNESCO/AMI) y microlearning. Adapta tiempos y productos al contexto de tu grupo.</div>
+  </section>
+
+  <!-- ESTRATEGIAS -->
+  <section class="view" id="estrategias">
+    <div class="eyebrow">Banco de estrategias activas</div>
+    <h2 class="sec">Cómo captar a chicos de primer grado</h2>
+    <p class="lead">Estrategias para adolescentes de 15–16 años, pensadas para que <b>hagan</b> (no solo escuchen) en el centro de cómputo. Cada una indica cuándo usarla y los pasos para aplicarla.</p>
+    <div class="grid g2" id="stratCards"></div>
+  </section>
+
+  <!-- HERRAMIENTAS -->
+  <section class="view" id="herramientas">
+    <div class="eyebrow">Caja de herramientas digitales</div>
+    <h2 class="sec">Ecosistema de apps para tu clase</h2>
+    <p class="lead">Selección de herramientas vigentes (2025–2026), todas con versión gratuita, organizadas por para qué sirven y en qué momento de Cultura Digital I conviene usarlas. Combina 3 o 4 bien, no todas a la vez.</p>
+    <div class="grid g2" id="toolCards"></div>
+    <div class="note" style="margin-top:18px">🔎 Selección basada en literatura educativa reciente sobre gamificación y herramientas TIC (2025–2026) y en recomendaciones del INTEF sobre PSeInt y pensamiento computacional. Verifica disponibilidad y políticas de cada plataforma antes de usarla con menores.</div>
+  </section>
+
+  <!-- BANCO -->
+  <section class="view" id="banco">
+    <div class="eyebrow">Banco ampliable de actividades</div>
+    <h2 class="sec">Conéctate y amplía tu repertorio</h2>
+    <p class="lead">Descarga actividades nuevas desde un archivo en internet (alojado en GitHub) y elige entre una gama amplia. Una vez descargadas, quedan guardadas para usarlas sin conexión.</p>
+
+    <div class="card pad" style="margin-bottom:18px;border-top:4px solid var(--red)">
+      <label class="fld">URL del banco de actividades (archivo .json en GitHub)</label>
+      <div class="row" style="align-items:flex-end">
+        <div style="flex:3"><input id="bk_url" value="activities.json" placeholder="activities.json  (o URL raw de GitHub)"></div>
+        <div style="flex:0"><button class="btn primary" onclick="fetchBank()">Actualizar actividades</button></div>
+      </div>
+      <div id="bk_status" style="font-size:.82rem;color:var(--muted);margin-top:10px"></div>
+      <div style="border-top:1px dashed var(--line);margin:14px 0 12px"></div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:8px">¿La descarga no funciona en este visor? Carga el archivo directo desde tu equipo (no necesita internet):</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <input type="file" id="bk_file" accept=".json,application/json" style="display:none" onchange="importBankFile(this)">
+        <button class="btn teal sm" onclick="document.getElementById('bk_file').click()">Importar archivo .json</button>
+        <button class="btn ghost sm" onclick="exportBank()">Descargar banco actual (.json)</button>
+      </div>
+    </div>
+
+    <div class="card pad" style="margin-bottom:18px;border-top:4px solid var(--teal)">
+      <label class="fld">¿Sin internet o aún sin repositorio? Carga el archivo directamente</label>
+      <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px">Funciona siempre, sin conexión: elige el archivo <span class="mono">activities.json</span> de tu computadora (o de un USB) o pega su contenido.</p>
+      <input type="file" id="bk_file" accept=".json,application/json" style="display:none" onchange="importBankFile(event)">
+      <button class="btn teal" onclick="document.getElementById('bk_file').click()">📁 Cargar archivo .json</button>
+      <details class="accordion" style="margin-top:8px"><summary>O pegar el JSON aquí</summary>
+        <textarea id="bk_paste" style="min-height:120px;font-family:'JetBrains Mono';font-size:.8rem;resize:vertical" placeholder='{"actividades":[ ... ]}'></textarea>
+        <button class="btn ghost sm" style="margin-top:8px" onclick="importBankPaste()">Cargar pegado</button>
+      </details>
+    </div>
+
+    <div class="card pad noprint" style="margin-bottom:16px">
+      <div class="row">
+        <div><label class="fld">Filtrar por unidad</label><select id="bk_unit" onchange="renderBank()"><option value="0">Todas</option><option value="1">Unidad 1</option><option value="2">Unidad 2</option><option value="3">Unidad 3</option></select></div>
+        <div><label class="fld">Filtrar por tipo</label><select id="bk_type" onchange="renderBank()"><option value="">Todos</option></select></div>
+        <div style="display:flex;align-items:flex-end"><button class="btn ghost sm" onclick="printBank()">Imprimir banco filtrado</button></div>
+      </div>
+    </div>
+
+    <div class="grid g2" id="bankCards"></div>
+
+    <div class="note" style="margin-top:18px">🌐 <b>¿Cómo agregar tus propias actividades?</b> Publica este proyecto en GitHub y edita el archivo <span class="mono">data/activities.json</span>: cada actividad nueva con su <span class="mono">id</span> único aparecerá aquí al pulsar «Actualizar». Si la app corre dentro de un visor que bloquea la conexión, publícala en <b>GitHub Pages</b> (gratis) y ahí la descarga funcionará sin problema.</div>
+  </section>
+
+  <!-- EVALUACION -->
+  <section class="view" id="evaluacion">
+    <div class="eyebrow">Instrumentos</div>
+    <h2 class="sec">Lista de cotejo y rúbrica del portafolio</h2>
+    <p class="lead">Tu secuencia evalúa con <b>portafolio de evidencias digital (100%)</b> mediante lista de cotejo y rúbrica. Aquí tienes ambos listos para usar e imprimir.</p>
+    <div class="card pad" style="margin-bottom:18px">
+      <label class="fld">Generar instrumento para</label>
+      <select id="ev_unit" onchange="renderEval()" style="max-width:420px"></select>
+    </div>
+    <div id="evalOut"></div>
+  </section>
+
+  <!-- GUARDADOS -->
+  <section class="view" id="guardados">
+    <div class="eyebrow">Mis planes</div>
+    <h2 class="sec">Planes de clase guardados</h2>
+    <p class="lead">Tus planes y tu avance se guardan en este dispositivo. Ábrelos para imprimir o bórralos cuando ya no los necesites.</p>
+    <div class="card pad"><div id="savedList"><div class="empty">Cargando…</div></div></div>
+  </section>
+  <!-- IMPORTAR -->
+  <section class="view" id="importar">
+    <div class="eyebrow">Para todo el plantel</div>
+    <h2 class="sec">Sube tu secuencia y genera lo demás</h2>
+    <p class="lead">Otros docentes pueden cargar su propia Unidad de Aprendizaje. Sube tu secuencia en PDF: el sistema lee unidades, horas, categorías y temas, te los muestra para que los revises y corrijas, y al confirmar genera la estructura completa (sesiones, progreso y evaluación) lista para planear.</p>
+
+    <div class="card pad" style="margin-bottom:18px;border-top:4px solid var(--teal)">
+      <label class="fld">1. Sube tu secuencia didáctica (PDF)</label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <input type="file" id="imp_pdf" accept="application/pdf,.pdf" style="display:none" onchange="onPdf(this)">
+        <button class="btn teal" onclick="document.getElementById('imp_pdf').click()">Elegir archivo PDF</button>
+        <span id="imp_status" style="font-size:.84rem;color:var(--muted)"></span>
+      </div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:10px">Funciona con PDF de texto (plantilla NEM/MCCEMS). Si tu PDF es escaneado (solo imágenes) no tendrá texto: en ese caso usa la opción de importar/editar más abajo. La lectura del PDF requiere conexión a internet la primera vez.</div>
+    </div>
+
+    <div id="imp_review"></div>
+
+    <div class="card pad" style="margin-top:18px;border-top:4px solid var(--red)">
+      <label class="fld">Compartir secuencias completas (.json)</label>
+      <p style="font-size:.85rem;color:var(--muted);margin:.2rem 0 10px">Exporta tu secuencia ya armada para compartirla con otro docente, o carga una que te hayan pasado. También puedes restaurar el ejemplo de Cultura Digital I.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <input type="file" id="imp_json" accept=".json,application/json" style="display:none" onchange="importSeqFile(this)">
+        <button class="btn ghost sm" onclick="document.getElementById('imp_json').click()">Cargar secuencia .json</button>
+        <button class="btn ghost sm" onclick="exportSeq()">Descargar secuencia actual (.json)</button>
+        <button class="btn ghost sm" onclick="restoreDefault()">Restaurar ejemplo (Cultura Digital I)</button>
+      </div>
+    </div>
+    <div class="note" style="margin-top:14px">ℹ️ La lectura automática es una <b>ayuda</b>: rellena lo que detecta y tú lo corriges antes de generar. Las secciones Estrategias, Herramientas, Banco y Modelos están pensadas para Cultura Digital, pero sirven de referencia para cualquier asignatura.</div>
+  </section>
+
+</main>
+
+<div id="printarea"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===================== DATOS CURRICULARES + DESARROLLO ===================== */
+const DEFAULT_UNITS = [
+  {
+    id:1, css:"unit", title:"I. Ciudadanía Digital y Normatividad en el uso del Ciberespacio",
+    hmd:12, hei:3, cat:"C1 Ciudadanía Digital", progs:"Progresiones 1–4",
+    metas:["M1 Reconoce el ciberespacio y servicios digitales para acceder al conocimiento.","M2 Utiliza el ciberespacio y servicios digitales conforme al marco normativo.","M3 Resguarda su identidad e interacciones identificando amenazas y riesgos."],
+    obj:"Comprende la ciudadanía digital, aplica la normatividad del ciberespacio y se cuida de amenazas cibernéticas usando las TIC de forma responsable.",
+    toc:[["I.1 Ciudadanía Digital","Ciudadano · Identidad · Ciberespacio · Servicio digital"],["I.2 Seguridad Digital","Protección de datos · Navegación segura · Privacidad · Identidad digital"],["I.3 Salud Digital y Medio Ambiente","Riesgos (cyberbullying, doxing, phishing, grooming) · Salud digital · Medio ambiente"],["I.4 Licenciamiento de software","Sistema · Programación · Aplicación"],["I.5 Criterios de selección de información","Publicación responsable · Actualidad · Tendencia · Autor · Análisis"],["I.6 Identidad Digital","Credenciales · Datos de identidad"],["I.7 Plataformas Digitales","Redes sociales · Institucionales · Educativas"],["I.8 Comunidades Virtuales","Las TICCAD"],["I.9 Requerimientos de Hardware","Mínimos · Recomendados · Óptimos"],["I.10 Unidades de medida","Almacenamiento · Velocidad · Procesamiento"],["I.11 Sistemas Operativos","Cómputo · Móvil · Servidores"],["I.12 Herramientas de búsqueda","Navegadores y motores · Operadores de búsqueda"],["I.13 Tipos de licenciamiento","Suscripción · Nube · Concurrentes · Funciones · Asientos · Sin conexión"],["I.14 Marco Normativo","Reglamento del centro · Datos personales · Derechos de autor · Netiquetas · Servicios digitales"]],
+    sessions:[
+      {t:"Encuadre y diagnóstico",cont:"Presentación de la UAC y Progresión 1",ae:"Reconoce los objetivos del curso y su forma de evaluación; activa conocimientos previos sobre ciudadanía digital.",
+       preg:"¿Qué significa ser un buen ciudadano… pero en internet?",
+       open:["Bienvenida y dinámica de presentación rápida (nombre + la app que más usan).","Proyectar la secuencia y acordar reglas del centro de cómputo y la forma de evaluar (portafolio digital)."],
+       dev:["Lanzar la pregunta detonadora y registrar respuestas en vivo.","Lectura comentada de las 4 progresiones de la unidad."],
+       cierre:["Cada alumno escribe en un formulario en línea 3 cosas que cree saber sobre seguridad digital."],
+       lab:"Crear su carpeta personal en Drive «Cultura Digital I – Portafolio» y compartirla con el docente. Es la base de todo el portafolio.",
+       tool:"Mentimeter o Google Forms para el diagnóstico en vivo; Google Drive para crear el portafolio.",
+       hei:"Ver un video corto sobre huella digital y traer un ejemplo propio.",
+       tip:"El primer día define el tono: deja claras 3 reglas del lab y por qué el portafolio vale el 100%.",
+       estr:"Evaluación diagnóstica gamificada",ev:"Formulario diagnóstico contestado + carpeta de Drive creada"},
+      {t:"Ciudadanía y Seguridad Digital",cont:"I.1 Ciudadanía Digital · I.2 Seguridad Digital",ae:"Distingue ciudadano, identidad, ciberespacio y servicio digital; identifica protección de datos y navegación segura.",
+       preg:"¿Qué huella dejaste en internet en las últimas 24 horas?",
+       open:["Lluvia de ideas en pizarrón colaborativo: ¿qué huella digital dejamos hoy?"],
+       dev:["Mini-cátedra (15 min) con ejemplos reales de filtración de datos.","Demostración: revisar configuración de privacidad de una red social y contraseñas seguras."],
+       cierre:["Reto: cada alumno fortalece la contraseña de su correo institucional y activa verificación en 2 pasos."],
+       lab:"Auditoría de privacidad: en su correo UAGro revisan permisos, actividad reciente y crean una contraseña fuerte. Captura de pantalla como evidencia.",
+       tool:"Padlet o Jamboard para la lluvia de ideas; configuración real del correo UAGro.",
+       hei:"Revisar la privacidad de una red social en casa y anotar 3 ajustes.",
+       tip:"Que apliquen el cambio en su propia cuenta: lo que se vive se recuerda más que lo que se escucha.",
+       estr:"Aprender haciendo (yo lo hago / lo hacemos / tú lo haces)",ev:"Captura de configuración de seguridad aplicada"},
+      {t:"Salud Digital y Medio Ambiente",cont:"I.3 Riesgos digitales · Salud digital · Medio ambiente",ae:"Identifica cyberbullying, doxing, phishing y grooming, sus consecuencias y hábitos de salud digital.",
+       preg:"¿Conoces a alguien que haya vivido un riesgo digital? (sin nombres)",
+       open:["Ver un clip corto sobre un riesgo digital y reaccionar en una palabra."],
+       dev:["Equipos de 3 investigan y exponen un riesgo: cyberbullying, doxing, phishing, grooming.","Docente refuerza con casos reales y qué hacer ante cada uno."],
+       cierre:["Cada equipo formula una recomendación de salud digital para el grupo."],
+       lab:"Diseñar una infografía sobre «un riesgo digital y cómo prevenirlo» y subirla al portafolio.",
+       tool:"Canva para Educación para la infografía; Genially si quieres versión interactiva.",
+       hei:"Investigar el riesgo asignado con una fuente confiable.",
+       tip:"Cierra con la ruta de ayuda real (a quién acudir): así es útil, no solo teoría.",
+       estr:"Aula invertida + exposición por equipos",ev:"Infografía digital del riesgo asignado"},
+      {t:"Licenciamiento y selección de información",cont:"I.4 Licenciamiento de software · I.5 Criterios de selección de información",ae:"Distingue tipos de software por licencia y aplica criterios para evaluar la confiabilidad de una fuente.",
+       preg:"¿«Gratis» y «libre» son lo mismo?",
+       open:["Debate de 5 min sobre la pregunta detonadora."],
+       dev:["Conferencia con apoyo de video sobre licencias de software.","Modelar la evaluación de una página: autor, fecha, tendencia, respaldo."],
+       cierre:["Checklist rápido: clasificar 4 ejemplos de software por su licencia."],
+       lab:"Reto de verificación: a cada equipo una noticia; deciden si es confiable usando los 5 criterios y registran su veredicto en un documento compartido.",
+       tool:"Video de YouTube + Google Docs compartido para el veredicto.",
+       hei:"Traer una noticia para evaluarla con los 5 criterios.",
+       tip:"Usa una noticia falsa real y reciente: detectarla los engancha más que una definición.",
+       estr:"Reto cronometrado de verificación de fuentes",ev:"Tabla comparativa de software + ficha de evaluación de fuente"},
+      {t:"Identidad y plataformas digitales",cont:"I.6 Identidad Digital · I.7 Plataformas Digitales (Progresión 2)",ae:"Reconoce sus credenciales y datos de identidad; clasifica plataformas según su uso.",
+       preg:"¿En cuántas plataformas tienes cuenta ahora mismo?",
+       open:["Encuesta express proyectada con el resultado del grupo."],
+       dev:["Equipo 1: identidad digital y credenciales. Equipo 2: redes, institucionales y educativas.","Docente refuerza el manejo responsable de credenciales."],
+       cierre:["Acuerdo de grupo: 3 reglas para cuidar la identidad digital."],
+       lab:"Configurar y personalizar su perfil en la plataforma educativa institucional (Classroom/Moodle UAGro) y unirse al curso.",
+       tool:"Google Classroom o Moodle UAGro para inscribir y configurar el perfil.",
+       hei:"Listar sus credenciales y revisar en cuáles repite contraseña.",
+       tip:"Aprovecha para dejarlos dentro de la plataforma del curso desde esta sesión.",
+       estr:"Trabajo colaborativo por estaciones",ev:"Perfil institucional configurado + lista de credenciales seguras"},
+      {t:"Comunidades virtuales de aprendizaje",cont:"I.8 Comunidades Virtuales · Las TICCAD",ae:"Reconoce comunidades virtuales de aprendizaje y participa de forma responsable.",
+       preg:"¿Aportas o solo consumes en tus grupos en línea?",
+       open:["Ejemplos de comunidades de aprendizaje (foros, grupos de estudio)."],
+       dev:["Lluvia de ideas guiada sobre las TICCAD y su uso educativo."],
+       cierre:["Reflexión: ¿cómo aporto valor y no solo consumo?"],
+       lab:"Participar en la comunidad del curso con una aportación útil siguiendo la netiqueta.",
+       tool:"Google Classroom o el grupo del curso para la aportación con netiqueta.",
+       hei:"Buscar una comunidad de aprendizaje de su interés.",
+       tip:"Modela tú una buena aportación antes de pedir la suya.",
+       estr:"Discusión guiada + participación auténtica",ev:"Aportación publicada en la comunidad del curso"},
+      {t:"Hardware, medidas y sistemas operativos",cont:"I.9 Hardware · I.10 Unidades de medida · I.11 Sistemas Operativos (Progresión 3)",ae:"Relaciona requerimientos de hardware, unidades de medida y tipos de SO con el acceso a servicios digitales.",
+       preg:"¿GB, MHz o Mbps? ¿Cuál mide qué?",
+       open:["Juego rápido de clasificación de unidades de medida."],
+       dev:["Conferencia con video sobre hardware, unidades de medida y SO.","Identificar en las PCs del lab sus características (procesador, RAM, almacenamiento)."],
+       cierre:["Llenar la ficha técnica del equipo que usaron."],
+       lab:"Inspección guiada: abrir «Acerca de este equipo»/propiedades del sistema y registrar las especificaciones reales de su PC del laboratorio.",
+       tool:"Propiedades del sistema de la PC + ficha en Google Docs/Sheets.",
+       hei:"Averiguar las especificaciones de su celular.",
+       tip:"Tocar el hardware real del lab vuelve concreto lo abstracto.",
+       estr:"Exploración guiada del equipo real",ev:"Ficha técnica del equipo del centro de cómputo"},
+      {t:"Búsqueda de información y licenciamiento",cont:"I.12 Herramientas de búsqueda · I.13 Tipos de licenciamiento",ae:"Usa operadores de búsqueda y distingue modelos de licenciamiento.",
+       preg:"¿Quién encuentra primero este dato exacto?",
+       open:["Reto: encontrar un dato específico lo más rápido posible. ¿Cómo lo lograron?"],
+       dev:["Discusión guiada sobre navegadores, motores y operadores (comillas, site:, filetype:).","Repaso de licencias: suscripción, nube, concurrentes."],
+       cierre:["Mini-quiz de operadores de búsqueda."],
+       lab:"Cacería de información: lista de 6 retos de búsqueda usando operadores avanzados; registran la consulta exacta que usaron.",
+       tool:"Operadores de Google en vivo (comillas, site:, filetype:); Quizizz para el mini-quiz.",
+       hei:"Resolver 2 búsquedas con operadores y anotar la consulta usada.",
+       tip:"Cronómetro en pantalla: la urgencia los activa.",
+       estr:"Gincana digital (búsqueda con retos)",ev:"Hoja de retos de búsqueda resuelta"},
+      {t:"Marco normativo (investigación por equipos)",cont:"I.14 Marco Normativo (Progresión 4)",ae:"Identifica la normatividad del uso de equipos y servicios digitales, protección de datos, derechos de autor y netiquetas.",
+       preg:"¿Alguna vez leíste los «términos y condiciones»?",
+       open:["Conversación a partir de la pregunta detonadora."],
+       dev:["Equipos que no han expuesto investigan y presentan: reglamento del centro, datos personales, derechos de autor, netiquetas, servicios digitales.","Docente refuerza cada bloque."],
+       cierre:["Cada equipo aporta una regla al «código de convivencia digital» del grupo."],
+       lab:"Redactar de forma colaborativa el Reglamento del Centro de Cómputo del grupo.",
+       tool:"Google Docs compartido para redactar el reglamento entre todos.",
+       hei:"Investigar el bloque asignado del marco normativo.",
+       tip:"Que el reglamento lo escriban ellos: se cumple más si es suyo.",
+       estr:"Investigación + construcción colectiva",ev:"Reglamento del centro de cómputo (colaborativo)"},
+      {t:"Servicios digitales en la vida diaria",cont:"I.14.7 Plataformas de servicios digitales",ae:"Clasifica servicios digitales (comercio, streaming, transporte, pago, e-learning) y su normatividad.",
+       preg:"¿Qué servicio digital usaste ayer sin darte cuenta?",
+       open:["Mapa rápido en el pizarrón de servicios que usan."],
+       dev:["Recorrido por tipos de plataformas y sus reglas de uso seguro."],
+       cierre:["Reflexión sobre consumo responsable y suscripciones."],
+       lab:"Comparativo en hoja de cálculo: 3 plataformas de un mismo tipo (precio, ventajas, riesgos).",
+       tool:"Google Sheets para la tabla comparativa.",
+       hei:"Comparar precios de 3 plataformas de un mismo tipo.",
+       tip:"Conecta con consumo responsable: suscripciones que olvidamos pagar.",
+       estr:"Análisis comparativo guiado",ev:"Tabla comparativa de servicios digitales"},
+      {t:"Integración del portafolio",cont:"Cierre de la Progresión 1–4",ae:"Organiza y sistematiza las evidencias de la unidad en su portafolio digital.",
+       preg:"¿Tu portafolio le quedaría claro a alguien que no estuvo en clase?",
+       open:["Repaso relámpago de los temas de la unidad."],
+       dev:["Cada alumno revisa que su portafolio tenga todas las evidencias con su lista de cotejo."],
+       cierre:["Autoevaluación: ¿qué aprendí que sí aplicaré?"],
+       lab:"Ordenar el portafolio en Drive con subcarpetas por tema y portada; verificar permisos de compartido.",
+       tool:"Google Drive (subcarpetas, portada, permisos) + Kahoot de repaso.",
+       hei:"Completar las evidencias faltantes.",
+       tip:"Una lista de cotejo visible evita el «no sabía qué entregar».",
+       estr:"Metacognición + portafolio digital",ev:"Portafolio de la Unidad I completo y ordenado"},
+      {t:"Evaluación de la Unidad I",cont:"Evaluación sumativa",ae:"Demuestra los aprendizajes de la unidad mediante el portafolio y un cierre evaluativo.",
+       preg:"¿Qué de esta unidad sí vas a usar fuera de la escuela?",
+       open:["Indicaciones de la evaluación y de la lista de cotejo."],
+       dev:["Revisión del portafolio con rúbrica; retroalimentación individual."],
+       cierre:["Comentario de cierre: lo más útil de la unidad."],
+       lab:"Entrega final del portafolio digital de la Unidad I (enlace de Drive en la plataforma).",
+       tool:"Rúbrica digital + enlace de Drive en la plataforma del curso.",
+       hei:"Preparar el enlace final del portafolio.",
+       tip:"Da retroalimentación específica, no solo el número: dice más al alumno.",
+       estr:"Evaluación sumativa con rúbrica",ev:"Portafolio evaluado (lista de cotejo + rúbrica)"}
+    ]
+  },
+  {
+    id:2, css:"unit u2", title:"II. Herramientas Digitales de Productividad y para la Comunicación",
+    hmd:16, hei:4, cat:"C2 Comunicación y Colaboración", progs:"Progresión 5",
+    metas:["M1 Interactúa a través de las TIC para ampliar su conocimiento y vincularse con su entorno.","M2 Colabora en comunidades virtuales de forma autónoma y colaborativa."],
+    obj:"Reconoce y utiliza herramientas de productividad (texto, hoja de cálculo, presentaciones) y de comunicación (correo, videoconferencia, nube) para colaborar.",
+    toc:[["II.1 Ofimática","Concepto y suites"],["II.2 Procesador de texto","Crear · Seleccionar · Formato · Imágenes · Guardar · Colaborar"],["II.3 Hoja de cálculo","Crear · Datos · Formato · Autosuma · Fórmulas · Gráficas"],["II.4 Presentaciones","Diapositivas · Texto · Imágenes · Colaborativo · Consejos"],["II.5 Trabajo colaborativo","Herramientas · Nube · Correo · Videoconferencias"]],
+    sessions:[
+      {t:"Encuadre y diagnóstico de ofimática",cont:"Presentación de la Unidad II",ae:"Reconoce qué es la ofimática y diagnostica sus conocimientos previos.",
+       preg:"¿Qué tarea escolar te quita más tiempo y podrías automatizar?",
+       open:["Clase magistral breve: ruta de la unidad y forma de evaluar."],
+       dev:["Diagnóstico sobre software de aplicación, suites ofimáticas, comunidades virtuales y nube.","Ver video «¿Qué es la ofimática?»."],
+       cierre:["¿Qué herramienta quieren dominar y por qué?"],
+       lab:"Abrir Google Docs/Word en línea, crear su primer documento de prueba y guardarlo en su portafolio.",
+       tool:"Google Forms (diagnóstico) + Google Docs/Word en línea.",
+       hei:"Ver «¿Qué es la ofimática?» y otro de comunidades/nube.",
+       tip:"Parte de un dolor real (las tareas) para que vean la utilidad inmediata.",
+       estr:"Diagnóstico + tour del entorno",ev:"Cuestionario diagnóstico contestado"},
+      {t:"Procesador de texto: lo esencial",cont:"II.2 Crear, seleccionar, formato, imágenes, guardar",ae:"Crea y da formato a un documento e inserta imágenes.",
+       preg:"¿Qué hace que un documento se vea «profesional»?",
+       open:["Mostrar dos documentos: uno descuidado y uno profesional. ¿Qué cambia?"],
+       dev:["Demostración guiada de formato, estilos, inserción de imágenes y guardado.","Práctica paso a paso en espejo (docente proyecta, alumno replica)."],
+       cierre:["Mini-reto de formato en 5 minutos."],
+       lab:"Maquetar una ficha personal con formato, encabezado e imagen, siguiendo una rúbrica de presentación.",
+       tool:"Google Docs / Word online (estilos, encabezados, imágenes).",
+       hei:"Practicar formato con un texto propio.",
+       tip:"Compara un doc feo vs uno cuidado: el contraste motiva más que la teoría.",
+       estr:"Demostración espejo + reto",ev:"Documento con formato e imagen"},
+      {t:"Documento colaborativo",cont:"II.2.6 Documento de texto colaborativo",ae:"Trabaja un documento en tiempo real con otros.",
+       preg:"¿Qué pasa si 4 personas escriben el mismo documento a la vez?",
+       open:["Probarlo en vivo: todos escriben en un mismo documento."],
+       dev:["Comentarios, sugerencias e historial de versiones.","Roles dentro del documento (redactor, editor, revisor)."],
+       cierre:["Acuerdos de etiqueta para escribir en equipo."],
+       lab:"En equipos de 5, redactar un glosario bilingüe (Word/Meaning/Example) de 2 cuartillas sobre Ciudadanía Digital, en un solo documento compartido.",
+       tool:"Google Docs en tiempo real (comentarios, sugerencias, historial).",
+       hei:"Investigar términos en inglés del tema Ciudadanía Digital.",
+       tip:"Asigna roles (redactor/editor/revisor) para que nadie solo «mire».",
+       estr:"Trabajo colaborativo con roles",ev:"Glosario colaborativo en línea"},
+      {t:"Hoja de cálculo: datos y autosuma",cont:"II.3 Crear hoja, datos, formato, autosuma",ae:"Captura datos y usa autosuma con formato adecuado.",
+       preg:"¿Para qué usa una hoja de cálculo un tendero, un tiktoker y tú?",
+       open:["Conversación a partir de la pregunta detonadora."],
+       dev:["Demostración: filas/columnas, formato de celdas, autosuma.","Práctica en espejo con un set de datos."],
+       cierre:["Reto: sumar los gastos de la semana."],
+       lab:"Elaborar una lista de compras del supermercado con cantidades, precios y total con autosuma.",
+       tool:"Google Sheets / Excel (formato de celdas, autosuma).",
+       hei:"Anotar sus gastos de la semana.",
+       tip:"Usa datos suyos (gastos): el dato propio engancha.",
+       estr:"Demostración espejo + caso real",ev:"Hoja de cálculo de lista de compras"},
+      {t:"Hoja de cálculo: fórmulas y gráficas",cont:"II.3.5 Fórmulas simples · II.3.6 Gráficas",ae:"Aplica fórmulas simples y crea una gráfica para representar datos.",
+       preg:"¿Qué entiendes más rápido: una tabla o una gráfica?",
+       open:["De números a imagen: ¿qué procesa mejor el cerebro?"],
+       dev:["Fórmulas básicas (suma, promedio, porcentaje).","Crear y editar una gráfica."],
+       cierre:["Interpretar una gráfica entre todos."],
+       lab:"Encuesta express al grupo (música, apps, deporte) → capturar datos y generar una gráfica con su interpretación.",
+       tool:"Google Sheets (fórmulas + insertar gráfica).",
+       hei:"Recolectar un dato del grupo para graficar.",
+       tip:"Haz la encuesta al vuelo y grafícala: ven el dato volverse imagen.",
+       estr:"Aprendizaje basado en datos propios",ev:"Hoja con fórmulas y gráfica interpretada"},
+      {t:"Presentaciones electrónicas",cont:"II.4 Diapositivas, texto, imágenes, colaborativo, consejos",ae:"Crea una presentación clara y efectiva.",
+       preg:"¿Por qué algunas diapositivas aburren y otras enganchan?",
+       open:["Mostrar una diapositiva saturada vs una limpia. ¿Cuál convence?"],
+       dev:["Crear diapositivas, agregar texto/imágenes, consejos de diseño (poco texto, contraste).","Edición colaborativa."],
+       cierre:["Regla 6×6 y otros tips de diseño."],
+       lab:"Crear una presentación de 5 diapositivas sobre «un descubrimiento científico reciente» aplicando los consejos de diseño.",
+       tool:"Google Slides / PowerPoint, o Genially/Canva para algo más visual.",
+       hei:"Buscar un descubrimiento científico reciente.",
+       tip:"Regla de poco texto: enséñalos a hablar, no a leer la diapositiva.",
+       estr:"Modelado de buenas prácticas",ev:"Presentación electrónica del descubrimiento"},
+      {t:"Comunicación: correo y videoconferencia",cont:"II.5.3 Correo · II.5.4 Videoconferencias",ae:"Usa el correo institucional y herramientas de videoconferencia con etiqueta.",
+       preg:"¿Cómo le escribes a un maestro vs a un amigo?",
+       open:["Diferencia entre un mensaje de WhatsApp y un correo formal."],
+       dev:["Anatomía de un correo formal (asunto, saludo, cuerpo, despedida, adjunto).","Buenas prácticas en videollamadas."],
+       cierre:["Checklist del correo profesional."],
+       lab:"Redactar y enviar al docente un correo formal desde la cuenta UAGro con un archivo adjunto del portafolio.",
+       tool:"Correo institucional UAGro + etiqueta en Meet/Zoom.",
+       hei:"Redactar el borrador de un correo formal.",
+       tip:"Pide un correo real dirigido a ti: práctica con propósito.",
+       estr:"Simulación de comunicación real",ev:"Correo formal enviado con adjunto"},
+      {t:"Trabajo en la nube y comunidades",cont:"II.5.1–II.5.2 Nube · Comunidades virtuales",ae:"Almacena, comparte y colabora en la nube de forma organizada.",
+       preg:"¿Dónde están realmente tus archivos «en la nube»?",
+       open:["Desmitificar la nube con un esquema simple."],
+       dev:["Almacenamiento, compartir con permisos, trabajo simultáneo.","Comunidades virtuales de aprendizaje."],
+       cierre:["Organización de carpetas recomendada."],
+       lab:"Estructurar el portafolio de la Unidad II en la nube y aportar un recurso útil a la comunidad del curso.",
+       tool:"Google Drive (compartir con permisos) + comunidad del curso.",
+       hei:"Organizar su carpeta del curso.",
+       tip:"Enseña permisos: el error típico es «compartir con cualquiera».",
+       estr:"Gestión de la nube + participación",ev:"Portafolio en la nube + aportación a la comunidad"},
+      {t:"Integración de productividad",cont:"Cierre Progresión 5",ae:"Integra texto, hoja de cálculo y presentación en un mini-proyecto.",
+       preg:"¿Puedes contar una historia usando datos, texto e imagen juntos?",
+       open:["Presentar el mini-proyecto integrador."],
+       dev:["Avance del proyecto que combina las tres herramientas."],
+       cierre:["Coevaluación entre equipos."],
+       lab:"Mini-proyecto: documento + hoja con gráfica + presentación sobre un tema de su interés.",
+       tool:"Google Docs + Sheets + Slides enlazados en Drive.",
+       hei:"Avanzar su mini-proyecto.",
+       tip:"Un tema que ellos elijan multiplica el compromiso.",
+       estr:"Proyecto integrador",ev:"Mini-proyecto ofimático integrado"},
+      {t:"Evaluación de la Unidad II",cont:"Examen + Bitácora COL",ae:"Demuestra el dominio de las herramientas y reflexiona sobre su aprendizaje.",
+       preg:"¿Qué traías al inicio y qué te llevas de esta unidad?",
+       open:["Indicaciones del examen y la autoevaluación."],
+       dev:["Examen de la unidad.","Autoevaluación «¿Qué traje y qué me llevo?»."],
+       cierre:["Llenado de la Bitácora COL."],
+       lab:"Entrega del portafolio de la Unidad II (enlace en la plataforma).",
+       tool:"Examen en Google Forms + Bitácora COL en Docs.",
+       hei:"Llenar la Bitácora COL.",
+       tip:"La Bitácora COL hace visible el aprendizaje; respétala como evidencia válida.",
+       estr:"Evaluación sumativa + metacognición",ev:"Examen + Bitácora COL + portafolio"}
+    ]
+  },
+  {
+    id:3, css:"unit u3", title:"III. Métodos para la Resolución de Problemas y Pensamiento Algorítmico",
+    hmd:20, hei:5, cat:"C3 Pensamiento Algorítmico", progs:"Progresiones 7–10",
+    metas:["M1 Representa la solución de problemas con pensamiento algorítmico (métodos, diagramas, técnicas).","M2 Aplica lenguaje algorítmico con medios digitales para resolver problemas del contexto."],
+    obj:"Desarrolla y utiliza el pensamiento y lenguaje algorítmico, y aplica métodos y técnicas para resolver problemas escolares y de la vida diaria.",
+    toc:[["III.1 Pasos para solucionar un problema","Identificar · Lluvia de ideas · Definir · Implementar"],["III.2 Planeación estratégica","Estrategia · Pensamiento lógico y algorítmico · Secuencia de pasos"],["III.3 Diagramas","Diagramas de flujo"],["III.4 Métodos y técnicas","5E · Caso · Árbol de causas · Científico · Diseño descendente · Refinamiento"],["III.5 Lenguaje computacional","Datos · Variables · Constantes · Operadores · Estructuras selectivas y repetitivas · Pseudocódigo"],["III.6 Lenguaje de programación básico","Práctica con software"]],
+    sessions:[
+      {t:"¿Cómo resolvemos problemas?",cont:"Recuperación de conocimientos previos",ae:"Activa estrategias intuitivas de resolución de problemas.",
+       preg:"Cuando tienes un problema, ¿qué haces primero?",
+       open:["Plantear un problema escolar real y preguntar cómo lo resolverían."],
+       dev:["Lluvia de ideas sobre cómo enfrentan problemas en su vida diaria."],
+       cierre:["Idea clave: todo problema se resuelve por pasos."],
+       lab:"Reto desenchufado: ordenar en equipo los pasos de una rutina cotidiana (hacer un sándwich, llegar a clase). Foto del orden como evidencia.",
+       tool:"Tarjetas físicas o Jamboard para ordenar los pasos (sin computadora).",
+       hei:"Anotar los pasos de una rutina diaria.",
+       tip:"Empieza SIN computadora: la lógica primero, la máquina después.",
+       estr:"Pensamiento computacional desenchufado",ev:"Secuencia de pasos de una rutina"},
+      {t:"Los pasos para solucionar un problema",cont:"III.1 Identificar, idear, definir, implementar",ae:"Aplica los cuatro pasos a un problema contextualizado.",
+       preg:"¿Todos los problemas se resuelven igual?",
+       open:["Presentar los 4 pasos con un ejemplo."],
+       dev:["Aplicar los pasos a un problema dado, en equipo o individual.","Exponer soluciones en plenaria."],
+       cierre:["Comparar soluciones: ¿cuál es más eficiente?"],
+       lab:"En documento compartido, resolver un problema del contexto escolar siguiendo y documentando los 4 pasos.",
+       tool:"Google Docs con plantilla de los 4 pasos.",
+       hei:"Aplicar los 4 pasos a un problema personal.",
+       tip:"Que comparen soluciones: hay más de un camino correcto.",
+       estr:"Aprendizaje basado en problemas",ev:"Documento de solución por pasos"},
+      {t:"Estrategia y pensamiento lógico",cont:"III.2 Estrategia · Pensamiento lógico y algorítmico",ae:"Distingue estrategia y diseña una secuencia lógica de pasos.",
+       preg:"¿Cuál es tu «truco» para ganar en un videojuego?",
+       open:["Acertijo lógico de calentamiento."],
+       dev:["Qué es una estrategia, pensamiento lógico vs algorítmico, secuencia de pasos."],
+       cierre:["Diseñar una estrategia para un problema previo."],
+       lab:"Resolver retos de lógica por bloques en línea y registrar la estrategia usada.",
+       tool:"Code.org / Blockly: retos de lógica por bloques.",
+       hei:"Resolver 2 niveles de Code.org en casa.",
+       tip:"Los retos por bloques dan logro inmediato: motivación pura.",
+       estr:"Gamificación del razonamiento lógico",ev:"Registro de acertijos resueltos + estrategia"},
+      {t:"Diagramas de flujo",cont:"III.3 Diagramas de flujo y simbología",ae:"Representa un proceso con la simbología correcta de un diagrama de flujo.",
+       preg:"¿Un instructivo de armado es un algoritmo?",
+       open:["¿Qué tienen en común un instructivo y un diagrama de flujo?"],
+       dev:["Simbología (inicio/fin, proceso, decisión, entrada/salida).","Trazar un diagrama sencillo entre todos."],
+       cierre:["Identificar errores en un diagrama de ejemplo."],
+       lab:"Crear un diagrama de flujo de una situación cotidiana en una herramienta en línea y exportarlo.",
+       tool:"draw.io o Lucidchart (simbología) y exportar como imagen.",
+       hei:"Dibujar a mano el flujo de su mañana.",
+       tip:"Primero a mano, luego digital: el símbolo se entiende dibujándolo.",
+       estr:"Modelado visual + práctica digital",ev:"Diagrama de flujo digital exportado"},
+      {t:"Métodos y técnicas de resolución",cont:"III.4 5E, caso, árbol de causas, científico, descendente, refinamiento",ae:"Selecciona y aplica un método pertinente a un problema.",
+       preg:"¿Qué problema del plantel te gustaría resolver?",
+       open:["Mostrar el catálogo de métodos y para qué sirve cada uno."],
+       dev:["Profundizar en un método elegido (p. ej. árbol de causas o 5E) con un caso.","Nota: el docente menciona todos pero desarrolla uno a fondo."],
+       cierre:["¿Qué método le queda mejor a tu problema?"],
+       lab:"Aplicar el método elegido a un problema del plantel y vaciarlo en una plantilla digital compartida.",
+       tool:"Plantilla digital del método elegido (Docs/Slides).",
+       hei:"Identificar las causas de un problema real.",
+       tip:"Elige UN método y hazlo a fondo, como pide tu secuencia.",
+       estr:"Método del caso aplicado",ev:"Análisis de problema con el método elegido"},
+      {t:"Lenguaje computacional: variables y datos",cont:"III.5 Datos, información, variables, constantes, operadores",ae:"Identifica datos, variables, constantes y operadores.",
+       preg:"Si una variable fuera una caja, ¿qué llevaría tu etiqueta?",
+       open:["Analogía de la variable como una caja con etiqueta."],
+       dev:["Tipos de datos, constantes vs variables, operadores aritméticos, relacionales y lógicos."],
+       cierre:["Clasificar ejemplos: ¿variable, constante u operador?"],
+       lab:"En PSeInt, declarar variables y hacer una operación simple (sumar dos números capturados por el usuario).",
+       tool:"PSeInt (software libre en español): declarar variables.",
+       hei:"Abrir PSeInt y escribir un algoritmo con su nombre usando variables.",
+       tip:"PSeInt no deja pasar errores de sintaxis: ideal para que no se frustren.",
+       estr:"Programación visual guiada (PSeInt)",ev:"Algoritmo de operación básica en PSeInt"},
+      {t:"Estructuras selectivas",cont:"III.5.15 Estructura selectiva (simple, doble, múltiple)",ae:"Modela decisiones con estructuras condicionales.",
+       preg:"¿Qué decisiones tomas con un «si… entonces…»?",
+       open:["Decisiones cotidianas como condicionales («si llueve, llevo paraguas»)."],
+       dev:["Si / Si-Sino / Según; construir un condicional paso a paso."],
+       cierre:["Trazar a mano la decisión de un caso."],
+       lab:"En PSeInt, programar un algoritmo que indique si un número es par o impar, o si un alumno aprueba.",
+       tool:"PSeInt (Si/Sino) con diagrama automático.",
+       hei:"Diseñar en papel una decisión cotidiana como condicional.",
+       tip:"Del «si llueve llevo paraguas» al código: parte de su vida diaria.",
+       estr:"Del lenguaje natural al pseudocódigo",ev:"Algoritmo con estructura selectiva"},
+      {t:"Estructuras repetitivas",cont:"III.5.16 Estructura repetitiva (mientras, desde/para)",ae:"Modela procesos que se repiten con ciclos.",
+       preg:"¿Qué tareas haces «en automático» repitiendo pasos?",
+       open:["Identificar repeticiones en su rutina."],
+       dev:["Mientras vs Para; diseñar un ciclo sencillo."],
+       cierre:["Predecir la salida de un ciclo."],
+       lab:"En PSeInt, programar un algoritmo con ciclo (tabla de multiplicar o contar del 1 al 10).",
+       tool:"PSeInt (Mientras, Para) con ejecución paso a paso.",
+       hei:"Pensar un proceso de su vida que se repita.",
+       tip:"Usa la «ejecución paso a paso» de PSeInt: ven el ciclo correr.",
+       estr:"Reto incremental de algoritmos",ev:"Algoritmo con estructura repetitiva"},
+      {t:"Proyecto algorítmico",cont:"III.6 Lenguaje de programación básico",ae:"Integra estructuras para resolver un problema completo.",
+       preg:"¿Qué algoritmo te facilitaría la vida?",
+       open:["Presentar el reto final: un algoritmo útil."],
+       dev:["Diseño y prueba del algoritmo combinando lo aprendido.","Tutorías y manuales de apoyo."],
+       cierre:["Prueba de escritorio entre compañeros."],
+       lab:"Desarrollar en PSeInt un algoritmo que resuelva un problema del contexto (calculadora de promedio, control de gastos).",
+       tool:"PSeInt (proyecto) + prueba de escritorio entre pares.",
+       hei:"Bocetar su algoritmo final.",
+       tip:"Un algoritmo útil para ELLOS (promedios, gastos) cierra con sentido.",
+       estr:"Proyecto integrador de programación",ev:"Algoritmo funcional en pseudocódigo"},
+      {t:"Evaluación de la Unidad III",cont:"Cierre y evaluación sumativa",ae:"Demuestra el dominio del pensamiento algorítmico.",
+       preg:"¿Cómo cambió tu forma de resolver problemas este semestre?",
+       open:["Indicaciones de entrega y evaluación."],
+       dev:["Revisión del proyecto con rúbrica; prueba de escritorio."],
+       cierre:["Metacognición sobre el aprendizaje."],
+       lab:"Entrega del portafolio de la Unidad III con los algoritmos documentados.",
+       tool:"Rúbrica + entrega del portafolio con algoritmos.",
+       hei:"Documentar y entregar el proyecto.",
+       tip:"Pídeles «prueba de escritorio»: defienden su lógica, no memorizan.",
+       estr:"Evaluación sumativa con rúbrica",ev:"Portafolio + proyecto algorítmico evaluado"}
+    ]
+  }
+];
+
+let UNITS = DEFAULT_UNITS;
+
+const STRATEGIES = [
+  {n:"Aprender haciendo (Yo lo hago · Lo hacemos · Tú lo haces)",when:"Cualquier habilidad práctica del lab: ofimática, búsquedas, PSeInt.",steps:["El docente lo demuestra proyectando la pantalla (los alumnos solo observan).","Lo hacen juntos, paso a paso, al mismo ritmo.","Cada alumno lo ejecuta solo con una variante; el docente acompaña.","Cierra con un micro-reto que prueben sin guía."]},
+  {n:"Gamificación con Kahoot / Quizizz",when:"Diagnóstico, repaso antes de evaluación, cierre de tema.",steps:["Arma 8–10 preguntas del tema.","Proyecta y deja que entren con su dispositivo o PC.","Usa el ranking para motivar (sin castigar al último).","Repasa las preguntas con más errores."]},
+  {n:"Aula invertida",when:"Temas conceptuales (riesgos digitales, licencias, métodos).",steps:["Asigna un video corto o lectura del libro como HEI.","En clase no expones: aplican lo que vieron.","Resuelven un caso o crean un producto con esa información.","Refuerza solo las dudas reales."]},
+  {n:"Reto cronometrado",when:"Práctica de formato, fórmulas, búsquedas, algoritmos.",steps:["Define una tarea concreta y un tiempo (5–8 min).","Pon un cronómetro visible en la pantalla.","Quien termina, ayuda a un compañero.","Revisa una solución modelo al final."]},
+  {n:"Aprendizaje Basado en Proyectos (ABP)",when:"Mini-proyecto integrador de cada unidad.",steps:["Plantea un producto real y con sentido para ellos.","Divide en entregas pequeñas por sesión.","Da una rúbrica desde el inicio para que sepan qué se espera.","Cierra con presentación y coevaluación."]},
+  {n:"Pensamiento computacional desenchufado",when:"Inicio de la Unidad III, antes de tocar PSeInt.",steps:["Plantea un problema cotidiano sin computadora.","Pídeles ordenar los pasos en tarjetas o en el pizarrón.","Hazlos detectar pasos ambiguos o faltantes.","Conecta esa lógica con los algoritmos digitales."]},
+  {n:"Tutoría entre pares",when:"Lab con pocas máquinas o niveles dispares.",steps:["Empareja a quien domina con quien batalla.","Da un guion claro de la tarea a ambos.","El tutor explica, no hace el trabajo del otro.","Rota los roles en la siguiente práctica."]},
+  {n:"Portafolio digital con insignias",when:"Hilo conductor de todo el curso (evaluación NEM).",steps:["Cada alumno tiene su carpeta en Drive desde la sesión 1.","Cada evidencia entra con su nombre claro.","Otorga «insignias» simbólicas por hitos (primer algoritmo, primera gráfica).","Revisas con lista de cotejo y rúbrica al cierre de cada unidad."]}
+];
+
+const TOOLS = [
+  {n:"Kahoot! / Quizizz",cat:"Evaluación gamificada",free:"Versión gratuita",use:"Cuestionarios en vivo con ranking; ideal para diagnóstico, repaso y cierre. Quizizz da informes por alumno y permite asignar como tarea.",where:"Todas las unidades (diagnóstico y repaso)."},
+  {n:"Mentimeter",cat:"Participación en vivo",free:"Gratis (con límites)",use:"Encuestas y nubes de palabras proyectadas en tiempo real; rompe el hielo y activa al grupo desde la apertura.",where:"Aperturas y preguntas detonadoras."},
+  {n:"Padlet / Jamboard",cat:"Lluvia de ideas colaborativa",free:"Padlet gratis (3 muros)",use:"Pizarrón colaborativo donde todos aportan notas a la vez desde su PC o celular.",where:"U1 huella digital · U3 ordenar pasos."},
+  {n:"Canva para Educación",cat:"Diseño visual",free:"Gratis para docentes y alumnos",use:"Infografías, carteles y presentaciones con plantillas; la cuenta educativa añade funciones extra.",where:"U1 infografía de riesgos · U2 presentaciones."},
+  {n:"Genially",cat:"Contenido interactivo",free:"Versión gratuita",use:"Presentaciones, imágenes interactivas y juegos tipo escape room; muy visual y atractivo para adolescentes.",where:"U1 y U2 (productos interactivos)."},
+  {n:"Google Workspace (Docs · Sheets · Slides · Drive · Classroom)",cat:"Productividad y gestión",free:"Gratis con cuenta institucional",use:"Núcleo de la Unidad II y del portafolio: edición colaborativa en tiempo real y entrega de tareas.",where:"Eje de todo el curso (portafolio)."},
+  {n:"draw.io / Lucidchart",cat:"Diagramas",free:"draw.io 100% gratis",use:"Crear diagramas de flujo con la simbología correcta y exportarlos como imagen.",where:"U3 diagramas de flujo."},
+  {n:"PSeInt",cat:"Pseudocódigo (software libre)",free:"Libre y multiplataforma",use:"Escribir algoritmos en español, genera el diagrama y ejecuta paso a paso; sin errores de sintaxis, el alumno se enfoca en la lógica.",where:"U3 variables, condicionales y ciclos."},
+  {n:"Code.org / Scratch",cat:"Programación por bloques",free:"Gratis",use:"Retos de lógica y videojuegos por bloques; logro inmediato que engancha antes del pseudocódigo.",where:"U3 introducción al pensamiento lógico."},
+  {n:"Edpuzzle",cat:"Video interactivo",free:"Versión gratuita",use:"Inserta preguntas dentro de un video para asegurar que el alumno lo vea y comprenda; clave en aula invertida.",where:"HEI / aula invertida en cualquier unidad."}
+];
+
+const BANK_BUILTIN=[
+  {id:"u1-a1",unidad:1,tema:"I.2 Seguridad Digital",titulo:"Escape room de contraseñas",tipo:"Gamificación",duracion:50,herramienta:"Genially",objetivo:"Aplicar criterios de contraseñas seguras resolviendo acertijos.",pasos:["Arma un escape room en Genially con 4 retos de seguridad.","Los equipos avanzan descifrando pistas sobre contraseñas y phishing.","Para salir, deben crear una contraseña fuerte y justificarla.","Cierra comparando estrategias entre equipos."],evidencia:"Captura del escape resuelto + contraseña justificada"},
+  {id:"u1-a2",unidad:1,tema:"I.3 Riesgos digitales",titulo:"Detective anti-phishing",tipo:"Reto",duracion:50,herramienta:"Capturas + Google Docs",objetivo:"Identificar señales de un correo o mensaje fraudulento.",pasos:["Muestra 6 mensajes (reales y falsos) proyectados.","En equipo deciden cuáles son phishing y por qué.","Listan las 5 señales de alarma que encontraron.","Crean una mini-guía 'cómo no caer'."],evidencia:"Guía anti-phishing del equipo"},
+  {id:"u1-a3",unidad:1,tema:"I.5 Selección de información",titulo:"¿Real o fake? Reto de verificación",tipo:"Reto",duracion:40,herramienta:"Google + Docs",objetivo:"Aplicar los 5 criterios para evaluar una fuente.",pasos:["Reparte una noticia distinta a cada equipo.","Aplican autor, fecha, tendencia, respaldo y análisis.","Dan un veredicto: confiable / dudosa / falsa.","Defienden su veredicto en plenaria."],evidencia:"Ficha de evaluación de la fuente"},
+  {id:"u1-a4",unidad:1,tema:"I.12 Búsqueda de información",titulo:"Gincana de operadores de búsqueda",tipo:"Reto",duracion:50,herramienta:"Operadores de Google + Quizizz",objetivo:"Usar comillas, site: y filetype: para buscar con precisión.",pasos:["Lista 6 retos de búsqueda con dificultad creciente.","Cronómetro visible; registran la consulta exacta usada.","El primero que termina ayuda a otro equipo.","Cierra con un Quizizz de operadores."],evidencia:"Hoja de retos resuelta con las consultas"},
+  {id:"u1-a5",unidad:1,tema:"I.14 Marco normativo",titulo:"Construye el reglamento del lab",tipo:"Colaborativo",duracion:50,herramienta:"Google Docs",objetivo:"Redactar de forma colectiva las normas del centro de cómputo.",pasos:["Cada equipo investiga un bloque (datos, autoría, netiqueta).","Aportan reglas a un documento compartido.","El grupo vota las 10 reglas finales.","Firman su código de convivencia digital."],evidencia:"Reglamento del centro de cómputo del grupo"},
+  {id:"u1-a6",unidad:1,tema:"I.1 Ciudadanía Digital",titulo:"Mi huella digital en 24 horas",tipo:"Aula invertida",duracion:40,herramienta:"Padlet",objetivo:"Tomar conciencia del rastro digital propio.",pasos:["De tarea anotan todo lo que hicieron en línea en un día.","En clase lo vuelcan anónimamente en un Padlet.","Identifican qué datos quedaron expuestos.","Proponen un hábito para reducir su huella."],evidencia:"Aportación en Padlet + hábito propuesto"},
+  {id:"u2-b1",unidad:2,tema:"II.2 Procesador de texto",titulo:"Reto de maquetado: CV en 20 minutos",tipo:"Reto",duracion:50,herramienta:"Google Docs",objetivo:"Aplicar formato, estilos e imagen en un documento real.",pasos:["Proyecta un CV modelo bien diseñado.","Cada alumno crea el suyo con encabezado, estilos e imagen.","Cronómetro de 20 min para la versión base.","Coevaluación rápida con checklist de formato."],evidencia:"CV maquetado en el portafolio"},
+  {id:"u2-b2",unidad:2,tema:"II.3 Hoja de cálculo",titulo:"Presupuesto de mi fiesta",tipo:"Práctica guiada",duracion:50,herramienta:"Google Sheets",objetivo:"Capturar datos y usar autosuma en un caso con sentido.",pasos:["Plantea un presupuesto con tope de dinero.","Capturan conceptos, cantidades y precios.","Aplican autosuma y formato de moneda.","Ajustan para no pasarse del límite."],evidencia:"Hoja de presupuesto con total"},
+  {id:"u2-b3",unidad:2,tema:"II.3 Gráficas",titulo:"Encuesta relámpago graficada",tipo:"Práctica guiada",duracion:50,herramienta:"Google Sheets",objetivo:"Convertir datos del grupo en una gráfica interpretada.",pasos:["Levantan una encuesta rápida (música, apps, deporte).","Capturan los datos en la hoja.","Insertan una gráfica adecuada al dato.","Escriben 2 conclusiones de la gráfica."],evidencia:"Gráfica con interpretación"},
+  {id:"u2-b4",unidad:2,tema:"II.4 Presentaciones",titulo:"Pitch de 90 segundos",tipo:"Proyecto",duracion:50,herramienta:"Google Slides / Canva",objetivo:"Diseñar una presentación efectiva y exponerla breve.",pasos:["Eligen un tema de su interés.","Crean 5 diapositivas con poco texto y buen contraste.","Ensayan un pitch de 90 segundos.","Exponen y reciben retroalimentación."],evidencia:"Presentación + pitch grabado o en vivo"},
+  {id:"u2-b5",unidad:2,tema:"II.5 Comunicación",titulo:"Correo formal con misión",tipo:"Práctica guiada",duracion:40,herramienta:"Correo institucional UAGro",objetivo:"Redactar y enviar un correo formal con adjunto.",pasos:["Repasan la anatomía del correo formal.","Redactan un correo real dirigido al docente.","Adjuntan una evidencia del portafolio.","Revisan con checklist antes de enviar."],evidencia:"Correo formal enviado con adjunto"},
+  {id:"u2-b6",unidad:2,tema:"II.5 Trabajo en la nube",titulo:"Carrera de colaboración en la nube",tipo:"Colaborativo",duracion:50,herramienta:"Google Drive / Docs",objetivo:"Trabajar un documento en tiempo real con roles.",pasos:["Equipos de 4 con roles: redactor, editor, revisor, diseñador.","Construyen un producto en un solo documento.","Usan comentarios e historial de versiones.","Gana el equipo con mejor coordinación, no rapidez."],evidencia:"Documento colaborativo con historial"},
+  {id:"u3-c1",unidad:3,tema:"III.1 Pasos para resolver",titulo:"Algoritmo del sándwich (desenchufado)",tipo:"Aula invertida",duracion:40,herramienta:"Tarjetas / Jamboard",objetivo:"Ordenar pasos lógicos sin computadora.",pasos:["Un equipo da instrucciones para hacer un sándwich.","El docente las ejecuta literalmente (aunque salga mal).","Detectan pasos ambiguos o faltantes.","Reescriben el algoritmo sin ambigüedad."],evidencia:"Secuencia de pasos corregida"},
+  {id:"u3-c2",unidad:3,tema:"III.3 Diagramas de flujo",titulo:"Diagrama de flujo de mi mañana",tipo:"Práctica guiada",duracion:50,herramienta:"draw.io",objetivo:"Representar un proceso con la simbología correcta.",pasos:["Repasa la simbología (inicio, proceso, decisión, fin).","Cada alumno diagrama su rutina matutina.","Incluyen al menos una decisión (si/no).","Exportan el diagrama como imagen."],evidencia:"Diagrama de flujo exportado"},
+  {id:"u3-c3",unidad:3,tema:"III.5 Estructuras selectivas",titulo:"Par o impar en PSeInt",tipo:"Práctica guiada",duracion:50,herramienta:"PSeInt",objetivo:"Usar una estructura condicional en pseudocódigo.",pasos:["Modela en pizarrón el 'si... entonces... sino...'.","En PSeInt capturan un número y deciden par/impar.","Ejecutan paso a paso y observan el diagrama.","Prueban con varios números."],evidencia:"Algoritmo con condicional funcionando"},
+  {id:"u3-c4",unidad:3,tema:"III.5 Estructuras repetitivas",titulo:"Tabla de multiplicar con ciclos",tipo:"Reto",duracion:50,herramienta:"PSeInt",objetivo:"Aplicar un ciclo para automatizar una repetición.",pasos:["Recuerdan la diferencia entre Mientras y Para.","Programan la tabla de un número con un ciclo Para.","Usan la ejecución paso a paso para ver el ciclo.","Reto extra: que el usuario elija el número."],evidencia:"Algoritmo con ciclo funcionando"},
+  {id:"u3-c5",unidad:3,tema:"III.2 Pensamiento lógico",titulo:"Laberinto de Code.org",tipo:"Gamificación",duracion:40,herramienta:"Code.org / Blockly",objetivo:"Resolver retos de lógica por bloques.",pasos:["Entran a un curso de laberinto por bloques.","Resuelven niveles de dificultad creciente.","Registran la estrategia que usaron.","Comparten el nivel más difícil que lograron."],evidencia:"Registro de niveles + estrategia"},
+  {id:"u3-c6",unidad:3,tema:"III.6 Proyecto",titulo:"Mi calculadora de promedio",tipo:"Proyecto",duracion:50,herramienta:"PSeInt",objetivo:"Integrar variables, entrada/salida y operaciones.",pasos:["Definen qué calificaciones pedir.","Programan la captura y el promedio en PSeInt.","Hacen prueba de escritorio con un compañero.","Documentan el algoritmo en el portafolio."],evidencia:"Algoritmo de promedio documentado"}
+];
+let BANK=BANK_BUILTIN.slice();
+
+const DATA_KEYS=["d_doc","d_esc","d_cct","d_lugar","d_grupo","d_turno","d_esp","d_alum","d_eq"];
+let datos={}; let done={};
+
+/* Capa de almacenamiento: usa window.storage dentro del visor de Claude y
+   localStorage cuando la página corre por su cuenta (GitHub Pages / archivo local). */
+const _ws=(typeof window!=='undefined'&&window.storage)?window.storage:null;
+const store={
+  get:(k)=>_ws?_ws.get(k):Promise.resolve((localStorage.getItem(k)!=null)?{key:k,value:localStorage.getItem(k)}:null),
+  set:(k,v)=>_ws?_ws.set(k,v):(localStorage.setItem(k,v),Promise.resolve({key:k,value:v})),
+  delete:(k)=>_ws?_ws.delete(k):(localStorage.removeItem(k),Promise.resolve({deleted:true})),
+  list:(p)=>_ws?_ws.list(p):Promise.resolve({keys:Object.keys(localStorage).filter(k=>!p||k.startsWith(p))})
+};
+
+/* ===================== NAV ===================== */
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById(t.dataset.v).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+function goTab(v){
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.v===v));
+  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goPlan(uid){goTab('plan');document.getElementById('p_unit').value=uid;loadSessions();}
+
+/* ===================== TOAST ===================== */
+let tT;function toast(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>e.classList.remove('show'),2200);}
+
+/* ===================== PERSISTENCIA ===================== */
+async function loadDatos(){try{const r=await store.get('cd1:datos');if(r&&r.value){datos=JSON.parse(r.value);DATA_KEYS.forEach(k=>{if(datos[k]!=null)document.getElementById(k).value=datos[k];});}}catch(e){}}
+async function saveDatos(){DATA_KEYS.forEach(k=>datos[k]=document.getElementById(k).value);try{await store.set('cd1:datos',JSON.stringify(datos));toast('Datos del grupo guardados');}catch(e){toast('No se pudo guardar (sin almacenamiento)');}}
+async function loadDone(){try{const r=await store.get('cd1:done');if(r&&r.value)done=JSON.parse(r.value);}catch(e){done={};}}
+async function persistDone(){try{await store.set('cd1:done',JSON.stringify(done));}catch(e){}}
+
+/* ===================== PROGRESO ===================== */
+function key(uid,i){return uid+'-'+i;}
+function isDone(uid,i){return !!done[key(uid,i)];}
+function unitProg(u){const total=u.sessions.length;let d=0;u.sessions.forEach((s,i)=>{if(isDone(u.id,i))d++;});return{d,total,pct:Math.round(d/total*100)};}
+function overallProg(){let d=0,total=0;UNITS.forEach(u=>{const p=unitProg(u);d+=p.d;total+=p.total;});return{d,total,pct:total?Math.round(d/total*100):0};}
+async function toggleDone(uid,i){const k=key(uid,i);if(done[k])delete done[k];else done[k]=true;await persistDone();renderStats();renderUnits();renderPlan();toast(done[k]?'Sesión marcada como impartida':'Sesión marcada como pendiente');}
+
+/* ===================== PANEL ===================== */
+function renderStats(){
+  const o=overallProg();
+  document.getElementById('overallNum').textContent=o.d+' / '+o.total+' sesiones · '+o.pct+'%';
+  document.getElementById('overallBar').style.width=o.pct+'%';
+  document.getElementById('overallUnits').innerHTML=UNITS.map(u=>{const p=unitProg(u);return `
+    <div style="background:#faf9f5;border:1px solid var(--line);border-radius:10px;padding:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <b style="font-family:'Space Grotesk';color:var(--navy);font-size:.9rem">Unidad ${u.id}</b>
+        <span class="num mono">${p.d}/${p.total}</span>
+      </div>
+      <div class="progress" style="margin-top:8px"><i style="width:${p.pct}%"></i></div>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:6px">${u.cat}</div>
+    </div>`;}).join('');
+}
+
+/* ===================== SECUENCIAS ===================== */
+function renderUnits(){
+  document.getElementById('unitCards').innerHTML=UNITS.map(u=>{const p=unitProg(u);return `
+    <div class="card pad ${u.css}">
+      <h3>${u.title}</h3>
+      <p style="color:var(--muted);font-size:.92rem;margin:.2rem 0 0">${u.obj}</p>
+      <div class="meta">
+        <span class="pill">${u.cat}</span>
+        <span class="pill teal">HMD ${u.hmd}h</span>
+        <span class="pill amber">HEI ${u.hei}h</span>
+        <span class="pill">${u.progs}</span>
+        <span class="pill green">${p.pct}% impartido</span>
+      </div>
+      <div class="pwrap"><div class="progress" style="flex:1"><i style="width:${p.pct}%"></i></div><span class="num">${p.d}/${p.total}</span></div>
+      <details class="accordion" style="margin-top:10px"><summary>Metas de aprendizaje</summary>
+        <ul style="margin:4px 0 8px;padding-left:18px;font-size:.9rem;color:var(--ink)">${u.metas.map(m=>`<li>${m}</li>`).join('')}</ul>
+      </details>
+      <details class="accordion"><summary>Contenido temático (${u.toc.length} bloques)</summary>
+        <div class="toc">${u.toc.map(t=>`<div class="li"><b>${t[0]}</b> — ${t[1]}</div>`).join('')}</div>
+      </details>
+      <button class="btn teal sm noprint" style="margin-top:10px" onclick="goPlan(${u.id})">Planear las clases de esta unidad →</button>
+    </div>`;}).join('');
+}
+
+/* ===================== PLAN ===================== */
+function fillUnitSelects(){
+  const opts=UNITS.map(u=>`<option value="${u.id}">Unidad ${u.id} — ${u.title.split('.')[1].trim().slice(0,42)}…</option>`).join('');
+  document.getElementById('p_unit').innerHTML=opts;
+  document.getElementById('ev_unit').innerHTML=opts;
+}
+function loadSessions(){
+  const u=UNITS.find(x=>x.id==+document.getElementById('p_unit').value);
+  document.getElementById('p_sesion').innerHTML=u.sessions.map((s,i)=>`<option value="${i}">Sesión ${i+1} — ${s.t}${isDone(u.id,i)?' ✓':''}</option>`).join('');
+  renderPlan();
+}
+function planHTML(u,s,i,forPrint){
+  const fecha=document.getElementById('p_fecha').value;
+  const d=DATA_KEYS.reduce((a,k)=>{a[k]=document.getElementById(k).value;return a;},{});
+  const dn=isDone(u.id,i);
+  return `
+  <div class="card pad" id="planCard">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:14px">
+      <div>
+        <div class="eyebrow" style="margin:0">Plan de clase · Cultura Digital I</div>
+        <h3 style="font-family:'Space Grotesk';color:var(--navy);margin:4px 0 2px;font-size:1.2rem">Sesión ${i+1}: ${s.t}</h3>
+        <div style="font-size:.84rem;color:var(--muted)">Unidad ${u.id} · ${u.cat} · ${u.progs}</div>
+      </div>
+      <div style="text-align:right;font-size:.8rem;color:var(--muted);line-height:1.5">
+        ${d.d_doc||'Docente'}<br>${d.d_esc||''} ${d.d_grupo?'· Grupo '+d.d_grupo:''}<br>${fecha?('Fecha: '+fecha):''} · Turno ${d.d_turno||''}
+        ${dn?'<br><span class="pill green" style="margin-top:4px">✓ Impartida</span>':''}
+      </div>
+    </div>
+
+    <div class="deton"><b>❓ Pregunta detonadora:</b> ${s.preg}</div>
+
+    <div class="kv" style="margin:12px 0">
+      <span class="k">Contenido</span><span>${s.cont}</span>
+      <span class="k">Aprendizaje esperado</span><span>${s.ae}</span>
+      <span class="k">Duración</span><span>50 minutos · Espacio: ${d.d_esp||'Centro de cómputo'}</span>
+      <span class="k">Estrategia</span><span><span class="pill teal">${s.estr}</span></span>
+      <span class="k">Herramienta digital</span><span><span class="pill red">${s.tool}</span></span>
+    </div>
+
+    <div class="timeline">
+      <div class="moment">
+        <div class="h"><b>Apertura</b><span class="min">~10 min</span></div>
+        <ul>${s.open.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div>
+      <div class="moment dev">
+        <div class="h"><b>Desarrollo</b><span class="min">~25 min</span></div>
+        <ul>${s.dev.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="lab"><b>🖥️ Actividad práctica en el centro de cómputo:</b> ${s.lab}</div>
+      </div>
+      <div class="moment cierre">
+        <div class="h"><b>Cierre</b><span class="min">~15 min</span></div>
+        <ul>${s.cierre.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div>
+    </div>
+
+    <div class="kv" style="margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+      <span class="k">Tarea (HEI)</span><span>${s.hei}</span>
+      <span class="k">Evidencia</span><span>${s.ev}</span>
+      <span class="k">Instrumento</span><span>Lista de cotejo / rúbrica (portafolio digital · evaluación sumativa)</span>
+      <span class="k">Recursos</span><span>Proyector · equipo de cómputo · internet · plataforma institucional</span>
+    </div>
+
+    <div class="tip"><b>💡 Consejo del especialista:</b> ${s.tip}</div>
+
+    <div class="noprint" style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="toggle ${dn?'on':''}" onclick="toggleDone(${u.id},${i})"><span class="box">${dn?'✓':''}</span>${dn?'Impartida':'Marcar como impartida'}</button>
+      <button class="btn primary sm" onclick="savePlan(${u.id},${i})">Guardar este plan</button>
+      <button class="btn ghost sm" onclick="printPlan(${u.id},${i})">Imprimir / PDF</button>
+    </div>
+  </div>`;
+}
+function renderPlan(){
+  const us=document.getElementById('p_unit');if(!us.value)return;
+  const u=UNITS.find(x=>x.id==+us.value);
+  const sel=document.getElementById('p_sesion');const i=+(sel.value||0);
+  // refresh session labels (✓) without losing selection
+  sel.innerHTML=u.sessions.map((s,idx)=>`<option value="${idx}">Sesión ${idx+1} — ${s.t}${isDone(u.id,idx)?' ✓':''}</option>`).join('');
+  sel.value=i;
+  document.getElementById('planOut').innerHTML=planHTML(u,u.sessions[i],i,false);
+}
+
+/* ===================== GUARDAR / IMPRIMIR ===================== */
+async function savePlan(uid,i){
+  const u=UNITS.find(x=>x.id==uid);const s=u.sessions[i];const id='plan_'+Date.now();
+  const rec={id,uid,i,titulo:`U${uid} · S${i+1}: ${s.t}`,fecha:document.getElementById('p_fecha').value,grupo:document.getElementById('d_grupo').value,ts:Date.now()};
+  try{await store.set('cd1:'+id,JSON.stringify(rec));toast('Plan guardado en «Guardados»');renderSaved();}
+  catch(e){toast('No se pudo guardar (sin almacenamiento)');}
+}
+function printPlan(uid,i){const u=UNITS.find(x=>x.id==uid);document.getElementById('printarea').innerHTML='<div class="wrap" style="padding:20px">'+planHTML(u,u.sessions[i],i,true).replace(/<div class="noprint"[\s\S]*?<\/div>\s*<\/div>$/,'</div>')+'</div>';window.print();}
+async function renderSaved(){
+  const box=document.getElementById('savedList');
+  try{
+    const r=await store.list('cd1:plan_');const keys=(r&&r.keys)?r.keys:[];
+    if(!keys.length){box.innerHTML='<div class="empty">Aún no guardas planes. Genera uno en «Plan de clase» y pulsa <b>Guardar este plan</b>.</div>';return;}
+    const recs=[];for(const k of keys){try{const g=await store.get(k);if(g&&g.value)recs.push(JSON.parse(g.value));}catch(e){}}
+    recs.sort((a,b)=>b.ts-a.ts);
+    box.innerHTML=recs.map(rec=>`<div class="savedrow">
+      <div class="t">${rec.titulo}<small>${rec.grupo?('Grupo '+rec.grupo+' · '):''}${rec.fecha||'sin fecha'}</small></div>
+      <button class="btn ghost sm" onclick="openSaved(${rec.uid},${rec.i})">Abrir</button>
+      <button class="btn ghost sm" onclick="delSaved('cd1:${rec.id}')">Borrar</button>
+    </div>`).join('');
+  }catch(e){box.innerHTML='<div class="empty">El almacenamiento no está disponible aquí; los planes no se conservarán al cerrar.</div>';}
+}
+function openSaved(uid,i){goPlan(uid);setTimeout(()=>{document.getElementById('p_sesion').value=i;renderPlan();},60);}
+async function delSaved(k){try{await store.delete(k);toast('Plan borrado');renderSaved();}catch(e){}}
+
+/* ===================== ESTRATEGIAS / HERRAMIENTAS ===================== */
+function renderStrats(){
+  document.getElementById('stratCards').innerHTML=STRATEGIES.map(s=>`
+    <div class="card pad strat">
+      <h4>${s.n}</h4>
+      <div class="when"><b>Cuándo:</b> ${s.when}</div>
+      <ol>${s.steps.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>`).join('');
+}
+function renderTools(){
+  document.getElementById('toolCards').innerHTML=TOOLS.map(t=>`
+    <div class="card pad tool">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:8px">
+        <h4>${t.n}</h4><span class="pill green">${t.free}</span>
+      </div>
+      <span class="pill teal" style="margin-top:8px">${t.cat}</span>
+      <p class="use">${t.use}</p>
+      <div class="where"><b>Dónde usarla:</b> ${t.where}</div>
+    </div>`).join('');
+}
+
+/* ===================== EVALUACIÓN ===================== */
+function renderEval(){
+  const u=UNITS.find(x=>x.id==+document.getElementById('ev_unit').value);
+  const evid=[...new Set(u.sessions.map(s=>s.ev))];
+  const cot=evid.map(e=>`<tr><td>${e}</td><td style="text-align:center;width:70px">☐</td><td style="text-align:center;width:70px">☐</td><td>&nbsp;</td></tr>`).join('');
+  document.getElementById('evalOut').innerHTML=`
+  <div class="card pad" style="margin-bottom:18px">
+    <div class="eyebrow" style="margin:0">Lista de cotejo · Unidad ${u.id}</div>
+    <h3 style="font-family:'Space Grotesk';color:var(--navy);margin:6px 0 2px">Portafolio de evidencias digital</h3>
+    <p style="font-size:.85rem;color:var(--muted);margin:0 0 4px">Marca cada evidencia integrada en el portafolio del alumno.</p>
+    <table class="rub"><tr><th>Evidencia</th><th>Sí</th><th>No</th><th>Observaciones</th></tr>${cot}</table>
+    <button class="btn ghost sm noprint" style="margin-top:12px" onclick="printEval(${u.id})">Imprimir lista y rúbrica</button>
+  </div>
+  <div class="card pad">
+    <div class="eyebrow" style="margin:0">Rúbrica analítica · Unidad ${u.id}</div>
+    <h3 style="font-family:'Space Grotesk';color:var(--navy);margin:6px 0 8px">Calidad del portafolio (4 niveles)</h3>
+    <table class="rub">
+      <tr><th>Criterio</th><th>Excelente (4)</th><th>Bien (3)</th><th>Suficiente (2)</th><th>Inicial (1)</th></tr>
+      <tr><td>Completitud</td><td>Todas las evidencias presentes y nombradas</td><td>Falta 1 evidencia</td><td>Faltan 2–3 evidencias</td><td>Faltan más de 3</td></tr>
+      <tr><td>Calidad técnica</td><td>Usa correctamente las herramientas digitales vistas</td><td>Pocos errores técnicos</td><td>Errores frecuentes</td><td>No aplica las herramientas</td></tr>
+      <tr><td>Organización</td><td>Carpetas, portada y permisos correctos</td><td>Buena organización con detalles</td><td>Desordenado pero accesible</td><td>Difícil de revisar</td></tr>
+      <tr><td>Responsabilidad digital</td><td>Cita fuentes, respeta autoría y netiqueta</td><td>Casi siempre lo hace</td><td>A veces lo omite</td><td>No lo considera</td></tr>
+      <tr><td>Reflexión / metacognición</td><td>Reflexión clara de su aprendizaje</td><td>Reflexión general</td><td>Reflexión superficial</td><td>Sin reflexión</td></tr>
+    </table>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:10px">Ponderación: portafolio 100% (evaluación sumativa), conforme a tu secuencia oficial.</p>
+  </div>`;
+}
+function printEval(uid){const html=document.getElementById('evalOut').innerHTML.replace(/<button[\s\S]*?<\/button>/g,'');document.getElementById('printarea').innerHTML='<div class="wrap" style="padding:20px"><h2 style="font-family:Space Grotesk;color:#16263f">Instrumentos de evaluación · Cultura Digital I</h2>'+html+'</div>';window.print();}
+
+/* ===================== MODELOS DE PLAN DE CLASE ===================== */
+const MODELOS=[
+ {id:"m1",titulo:"Reels con propósito: crea un microvideo educativo",unidad:1,dur:100,
+  metodo:"Microlearning + Alfabetización Mediática (AMI) + Aprendizaje Basado en Retos",
+  sustento:"El video corto es la principal matriz cultural de los jóvenes; convertir al alumno en productor y analista de contenido desarrolla pensamiento crítico (UNESCO/AMI) y el formato breve sostiene su atención.",
+  preg:"¿Tus videos favoritos te enseñan algo… o solo te entretienen?",
+  estr:"Microlearning + el alumno como creador",
+  tool:"Celular o PC + CapCut/Canva + grupo del curso",
+  open:["Proyectar 2 reels: uno informativo y uno engañoso; reaccionar en una palabra.","Plantear el reto: crear un microvideo (máx. 60 s) que enseñe un hábito de ciudadanía o seguridad digital."],
+  dev:["Mini-cápsula del docente: qué hace que un video corto enganche y a la vez sea veraz.","Equipos guionizan: gancho en los primeros 3 segundos, mensaje claro, fuente confiable.","Graban y editan en CapCut/Canva aplicando buenas prácticas."],
+  cierre:["Visionado del grupo y votación del más claro y veraz (no del más gracioso).","Reflexión: ¿qué responsabilidad tengo al publicar?"],
+  lab:"Producir el microvideo educativo y publicarlo en el grupo/comunidad del curso con su ficha de fuentes.",
+  hei:"Buscar un reel viral sobre el tema y detectar si tiene respaldo o es desinformación.",
+  ev:"Microvideo educativo (máx. 60 s) + ficha de fuentes",
+  tip:"Pon límite de 60 segundos: la restricción obliga a sintetizar y sube la calidad."},
+ {id:"m2",titulo:"Cazadores de fake news: laboratorio de verificación",unidad:1,dur:50,
+  metodo:"Alfabetización Mediática e Informacional + pensamiento crítico",
+  sustento:"La alfabetización mediática forma sujetos capaces de comprender, cuestionar y transformar los discursos que consumen; analizar desinformación reduce la vulnerabilidad de los adolescentes.",
+  preg:"¿Cómo sabes que algo que viste en internet es verdad?",
+  estr:"Reto de verificación por estaciones",
+  tool:"Google (operadores) + Docs compartido",
+  open:["Mostrar una noticia falsa real y reciente; ¿quién la creería?"],
+  dev:["Presentar el protocolo de verificación: autor, fecha, fuente original, búsqueda inversa, contraste.","Cada equipo recibe un caso distinto (noticia, imagen, cadena de WhatsApp) y lo investiga.","Emiten un veredicto fundamentado: confiable / dudoso / falso."],
+  cierre:["Plenaria: el caso más difícil y por qué.","Crean un decálogo del verificador para el grupo."],
+  lab:"Documentar la verificación en un documento compartido con la evidencia de cada paso.",
+  hei:"Verificar una publicación de su propio feed siguiendo el protocolo.",
+  ev:"Ficha de verificación + decálogo del verificador",
+  tip:"Usa casos que les toquen (salud, dinero fácil, celebridades): la cercanía activa el análisis."},
+ {id:"m3",titulo:"Reto productivo: organiza un evento real con la nube",unidad:2,dur:150,
+  metodo:"Aprendizaje Basado en Retos (ABR) + colaboración en la nube",
+  sustento:"El ABR aumenta la motivación intrínseca y el trabajo colaborativo (revisiones sistemáticas reportan efectos positivos en la mayoría de estudios) e integra de forma natural las TIC.",
+  preg:"¿Podrías organizar un evento escolar usando solo herramientas digitales?",
+  estr:"Reto colaborativo por roles",
+  tool:"Google Docs + Sheets + Slides + Drive (en equipo)",
+  open:["Presentar el reto: planear un evento real del plantel (feria, torneo, jornada).","Formar equipos con roles: logística, presupuesto, difusión, programa."],
+  dev:["Logística redacta el plan en Docs; presupuesto lo modela en Sheets con fórmulas; difusión diseña el cartel; programa arma las Slides.","Todo en una carpeta compartida de Drive, en tiempo real.","Checkpoints del docente por equipo."],
+  cierre:["Cada equipo presenta su parte; el grupo integra una sola propuesta.","Coevaluación con rúbrica."],
+  lab:"Producir el paquete digital del evento (documento + presupuesto + cartel + presentación) en Drive compartido.",
+  hei:"Avanzar la parte de su rol y dejar comentarios a otro equipo.",
+  ev:"Carpeta del evento con los 4 productos integrados",
+  tip:"Que el evento sea real (aunque sea pequeño): el propósito auténtico multiplica el compromiso."},
+ {id:"m4",titulo:"Mi marca personal digital saludable",unidad:1,dur:50,
+  metodo:"Ciudadanía digital + bienestar digital",
+  sustento:"Las redes influyen fuertemente en la autopercepción del adolescente; trabajar una identidad digital saludable y el consumo crítico cuida su bienestar y su huella a futuro.",
+  preg:"Si un reclutador buscara tu nombre hoy, ¿qué encontraría?",
+  estr:"Reflexión guiada + producto personal",
+  tool:"Buscador + Canva (tarjeta de presentación digital)",
+  open:["Búsqueda guiada (segura) del propio nombre: ¿qué aparece?"],
+  dev:["Diferencia entre identidad real e identidad digital; qué proyecta cada publicación.","Hábitos de bienestar digital: tiempo, comparación, límites.","Diseñar una 'tarjeta de presentación digital' positiva y profesional."],
+  cierre:["Acuerdo personal: una cosa que cuidaré en mis redes."],
+  lab:"Crear en Canva una tarjeta de presentación digital coherente con la imagen que quieren proyectar.",
+  hei:"Revisar la privacidad de su red más usada y anotar 3 ajustes hechos.",
+  ev:"Tarjeta de presentación digital + compromiso de bienestar",
+  tip:"Enfócalo en oportunidades (becas, trabajo), no en miedo: motiva más cuidar la huella."},
+ {id:"m5",titulo:"Design thinking: del problema del plantel al algoritmo",unidad:3,dur:150,
+  metodo:"ABR + Design Thinking + pensamiento computacional",
+  sustento:"El ABR fortalece las habilidades analíticas y la resolución colaborativa de problemas; aplicar la lógica a un reto real del plantel da sentido y propósito al pensamiento algorítmico.",
+  preg:"¿Qué problema de tu escuela resolverías si pudieras programarlo?",
+  estr:"Design thinking + algoritmo en PSeInt",
+  tool:"Jamboard/papel + draw.io + PSeInt",
+  open:["Detectar problemas reales del plantel (filas, registro, control de gastos del grupo)."],
+  dev:["Empatizar y definir el problema; idear soluciones (lluvia de ideas).","Modelar la solución como diagrama de flujo en draw.io.","Convertir el diagrama en un algoritmo en PSeInt y probarlo."],
+  cierre:["Prueba de escritorio entre pares; ajustes.","Presentar la solución algorítmica al grupo."],
+  lab:"Construir en PSeInt un algoritmo que resuelva el problema elegido y documentarlo en el portafolio.",
+  hei:"Bocetar el diagrama de flujo de su solución.",
+  ev:"Diagrama de flujo + algoritmo funcional en PSeInt",
+  tip:"Empieza por el problema, no por el código: la lógica nace de la necesidad real."},
+ {id:"m6",titulo:"Pitch del emprendimiento digital",unidad:2,dur:150,
+  metodo:"Aprendizaje Basado en Proyectos/Retos + competencias del siglo XXI",
+  sustento:"El ABR mejora la colaboración y la creatividad (competencias del siglo XXI en bachillerato); cerrar con un pitch real transfiere lo aprendido a un contexto auténtico.",
+  preg:"Si tuvieras una idea de negocio, ¿cómo la presentarías en 2 minutos?",
+  estr:"Proyecto integrador + pitch",
+  tool:"Docs (plan) + Sheets (costos/gráfica) + Slides/Canva (pitch)",
+  open:["Ver un pitch breve y exitoso; identificar qué lo hace convincente."],
+  dev:["Equipos definen una idea (producto/servicio digital) y su público.","Redactan el plan en Docs, estiman costos y los grafican en Sheets, arman el pitch en Slides/Canva.","Ensayan un pitch de 2 minutos."],
+  cierre:["Presentación de pitches; retroalimentación con rúbrica y voto del 'inversionista' (grupo)."],
+  lab:"Producir el paquete del emprendimiento (plan + costos con gráfica + presentación) y exponer el pitch.",
+  hei:"Investigar un emprendimiento digital real de su interés.",
+  ev:"Paquete del emprendimiento + pitch de 2 minutos",
+  tip:"El cronómetro de 2 minutos enseña a priorizar el mensaje: úsalo en serio."}
+];
+function renderModelos(){
+  const fu=+document.getElementById('md_unit').value;
+  const list=MODELOS.filter(m=>!fu||m.unidad==fu);
+  const box=document.getElementById('modelosOut');
+  if(!list.length){box.innerHTML='<div class="empty">No hay modelos para esa unidad.</div>';return;}
+  box.innerHTML=list.map((m,idx)=>modeloHTML(m,MODELOS.indexOf(m))).join('');
+}
+function modeloHTML(m,idx){
+  const sesiones=Math.round(m.dur/50);
+  return `<div class="card pad" style="border-top:4px solid var(--teal)">
+    <div style="display:flex;justify-content:space-between;align-items:start;gap:10px;flex-wrap:wrap">
+      <div>
+        <div class="eyebrow" style="margin:0">Plan modelo · Unidad ${m.unidad}</div>
+        <h3 style="font-family:'Space Grotesk';color:var(--navy);margin:4px 0 2px;font-size:1.18rem">${m.titulo}</h3>
+      </div>
+      <div style="text-align:right"><span class="pill teal">${m.dur} min · ${sesiones} ${sesiones>1?'sesiones':'sesión'}</span></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0">
+      <span class="pill amber">${m.metodo}</span>
+    </div>
+    <div class="tip" style="background:#eef7f1;border-color:#bfe2cd"><b style="color:var(--green)">📚 Sustento:</b> ${m.sustento}</div>
+    <div class="deton" style="margin-top:10px"><b>❓ Pregunta detonadora:</b> ${m.preg}</div>
+    <div class="kv" style="margin:12px 0">
+      <span class="k">Estrategia</span><span><span class="pill teal">${m.estr}</span></span>
+      <span class="k">Herramienta</span><span><span class="pill red">${m.tool}</span></span>
+    </div>
+    <div class="timeline">
+      <div class="moment"><div class="h"><b>Apertura</b></div><ul>${m.open.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="moment dev"><div class="h"><b>Desarrollo</b></div><ul>${m.dev.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="lab"><b>🖥️ Actividad práctica (producto):</b> ${m.lab}</div></div>
+      <div class="moment cierre"><div class="h"><b>Cierre</b></div><ul>${m.cierre.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+    <div class="kv" style="margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+      <span class="k">Tarea (HEI)</span><span>${m.hei}</span>
+      <span class="k">Evidencia</span><span>${m.ev}</span>
+      <span class="k">Instrumento</span><span>Rúbrica / lista de cotejo (portafolio digital)</span>
+    </div>
+    <div class="tip"><b>💡 Consejo:</b> ${m.tip}</div>
+    <div class="noprint" style="margin-top:14px"><button class="btn ghost sm" onclick="printModelo(${idx})">Imprimir / PDF</button></div>
+  </div>`;
+}
+function printModelo(idx){
+  const m=MODELOS[idx];
+  document.getElementById('printarea').innerHTML='<div class="wrap" style="padding:20px">'+modeloHTML(m,idx).replace(/<div class="noprint"[\s\S]*?<\/div>\s*<\/div>$/,'</div>')+'</div>';
+  window.print();
+}
+
+/* ===================== BANCO + CONEXIÓN ===================== */
+function mergeBank(extra){
+  const map={};BANK_BUILTIN.forEach(a=>map[a.id]=a);
+  (extra||[]).forEach(a=>{if(a&&a.id)map[a.id]=a;});
+  BANK=Object.values(map);
+}
+function typeColor(t){return ({"Gamificación":"red","Reto":"amber","Proyecto":"teal","Aula invertida":"green","Colaborativo":"teal","Práctica guiada":"green"})[t]||"";}
+function refreshTypeFilter(){
+  const sel=document.getElementById('bk_type');const cur=sel.value;
+  const types=[...new Set(BANK.map(a=>a.tipo))].sort();
+  sel.innerHTML='<option value="">Todos</option>'+types.map(t=>`<option value="${t}">${t}</option>`).join('');
+  sel.value=cur;
+}
+function renderBank(){
+  refreshTypeFilter();
+  const fu=+document.getElementById('bk_unit').value;
+  const ft=document.getElementById('bk_type').value;
+  let list=BANK.filter(a=>(!fu||a.unidad==fu)&&(!ft||a.tipo==ft));
+  list.sort((a,b)=>a.unidad-b.unidad||a.tema.localeCompare(b.tema));
+  const box=document.getElementById('bankCards');
+  if(!list.length){box.innerHTML='<div class="empty">No hay actividades con ese filtro.</div>';return;}
+  box.innerHTML=list.map(a=>`
+    <div class="card pad strat">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:8px">
+        <h4>${a.titulo}</h4><span class="pill ${typeColor(a.tipo)}">${a.tipo}</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0">
+        <span class="pill">U${a.unidad} · ${a.tema}</span>
+        <span class="pill teal">${a.duracion} min</span>
+        <span class="pill amber">${a.herramienta}</span>
+      </div>
+      <div style="font-size:.88rem;color:var(--muted);margin-bottom:4px"><b style="color:var(--ink)">Objetivo:</b> ${a.objetivo}</div>
+      <ol style="margin:6px 0 0;padding-left:18px;font-size:.88rem">${a.pasos.map(p=>`<li>${p}</li>`).join('')}</ol>
+      <div style="font-size:.82rem;color:var(--muted);margin-top:8px"><b style="color:var(--navy-2)">Evidencia:</b> ${a.evidencia}</div>
+    </div>`).join('');
+}
+async function loadBankCache(){
+  try{const r=await store.get('cd1:bank');if(r&&r.value){const c=JSON.parse(r.value);mergeBank(c.actividades);
+    if(c.url)document.getElementById('bk_url').value=c.url;
+    if(c.ts)document.getElementById('bk_status').textContent='Última actualización: '+new Date(c.ts).toLocaleString()+' · '+BANK.length+' actividades disponibles.';
+  }}catch(e){}
+}
+async function fetchBank(){
+  const url=document.getElementById('bk_url').value.trim();
+  const st=document.getElementById('bk_status');
+  if(!url){st.textContent='Escribe la URL del archivo activities.json (raw de GitHub).';return;}
+  if(/TU-USUARIO|USUARIO\/REPO/i.test(url)){st.innerHTML='<span style="color:var(--amber)">La URL todavía es un ejemplo.</span> Reemplaza <b>TU-USUARIO</b> y <b>REPO</b> por los de tu repositorio real de GitHub. Mientras tanto puedes usar «Importar archivo .json».';return;}
+  st.textContent='Conectando…';
+  try{
+    const res=await fetch(url,{cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    const acts=Array.isArray(data)?data:(data.actividades||data.activities||[]);
+    if(!acts.length)throw new Error('El archivo no contiene actividades.');
+    mergeBank(acts);
+    const ts=Date.now();
+    try{await store.set('cd1:bank',JSON.stringify({url,ts,actividades:acts}));}catch(e){}
+    renderBank();
+    st.innerHTML='<span style="color:var(--green)">✓ Actualizado.</span> '+BANK.length+' actividades disponibles ('+acts.length+' descargadas) · '+new Date(ts).toLocaleString();
+    toast('Banco actualizado: '+acts.length+' actividades');
+  }catch(err){
+    st.innerHTML='<span style="color:var(--red)">No se pudo descargar.</span> Verifica la URL y tu conexión. Si esta vista bloquea internet, usa «Importar archivo .json» o publica la app en GitHub Pages. El banco integrado ('+BANK.length+' actividades) sigue disponible.';
+    renderBank();
+  }
+}
+async function tryAutoBank(){
+  try{
+    const res=await fetch('activities.json',{cache:'no-store'});
+    if(!res.ok)return;
+    const data=await res.json();
+    const acts=Array.isArray(data)?data:(data.actividades||data.activities||[]);
+    if(acts.length){mergeBank(acts);renderBank();
+      const st=document.getElementById('bk_status');
+      if(st)st.innerHTML='<span style="color:var(--green)">✓ Banco cargado automáticamente desde el sitio.</span> '+BANK.length+' actividades disponibles.';
+    }
+  }catch(e){}
+}
+function importBankFile(input){
+  const f=input.files&&input.files[0];if(!f)return;
+  const st=document.getElementById('bk_status');
+  const r=new FileReader();
+  r.onload=async()=>{
+    try{
+      const data=JSON.parse(r.result);
+      const acts=Array.isArray(data)?data:(data.actividades||data.activities||[]);
+      if(!acts.length)throw new Error('sin actividades');
+      mergeBank(acts);
+      const ts=Date.now();
+      try{await store.set('cd1:bank',JSON.stringify({url:document.getElementById('bk_url').value.trim(),ts,actividades:acts}));}catch(e){}
+      renderBank();
+      st.innerHTML='<span style="color:var(--green)">✓ Archivo importado.</span> '+BANK.length+' actividades disponibles ('+acts.length+' del archivo).';
+      toast('Importadas '+acts.length+' actividades');
+    }catch(e){st.innerHTML='<span style="color:var(--red)">Archivo no válido.</span> Debe ser un .json con el arreglo «actividades».';}
+    input.value='';
+  };
+  r.readAsText(f);
+}
+function exportBank(){
+  const payload={version:new Date().toISOString().slice(0,10),actualizado:new Date().toISOString().slice(0,10),fuente:"Banco · Cultura Digital I · Prepa 50 UAGro",actividades:BANK};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='activities.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  toast('Descargado activities.json');
+}
+function printBank(){
+  const fu=+document.getElementById('bk_unit').value, ft=document.getElementById('bk_type').value;
+  let list=BANK.filter(a=>(!fu||a.unidad==fu)&&(!ft||a.tipo==ft)).sort((a,b)=>a.unidad-b.unidad);
+  const html=list.map(a=>`<div style="border:1px solid #ccc;border-radius:8px;padding:10px 12px;margin-bottom:8px"><b>${a.titulo}</b> — ${a.tipo} · U${a.unidad} ${a.tema} · ${a.duracion} min · ${a.herramienta}<br><i>Objetivo:</i> ${a.objetivo}<br><ol style="margin:4px 0 0 18px">${a.pasos.map(p=>`<li>${p}</li>`).join('')}</ol><i>Evidencia:</i> ${a.evidencia}</div>`).join('');
+  document.getElementById('printarea').innerHTML='<div class="wrap" style="padding:20px"><h2 style="font-family:Space Grotesk;color:#16263f">Banco de actividades · Cultura Digital I</h2>'+html+'</div>';
+  window.print();
+}
+
+/* ===================== IMPORTAR SECUENCIA (PDF / JSON) ===================== */
+function rebuildAll(){renderStats();renderUnits();fillUnitSelects();loadSessions();renderEval();}
+async function loadSeqCache(){try{const r=await store.get('cd1:seq');if(r&&r.value){const u=JSON.parse(r.value);if(Array.isArray(u)&&u.length)UNITS=u;}}catch(e){}}
+async function saveSeq(){try{await store.set('cd1:seq',JSON.stringify(UNITS));}catch(e){}}
+function applyUnits(units){UNITS=units;rebuildAll();}
+async function restoreDefault(){UNITS=DEFAULT_UNITS;try{await store.delete('cd1:seq');}catch(e){}rebuildAll();document.getElementById('imp_review').innerHTML='';toast('Restaurada la secuencia de Cultura Digital I');}
+
+async function ensurePdfjs(){
+  if(window.pdfjsLib)return window.pdfjsLib;
+  await new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=res;s.onerror=()=>rej(new Error('cdn'));document.head.appendChild(s);});
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  return window.pdfjsLib;
+}
+async function pdfToText(file){
+  const lib=await ensurePdfjs();const buf=await file.arrayBuffer();
+  const pdf=await lib.getDocument({data:buf}).promise;let t='';
+  for(let i=1;i<=pdf.numPages;i++){const pg=await pdf.getPage(i);const c=await pg.getTextContent();t+=c.items.map(x=>x.str).join(' ')+'\n';}
+  return t;
+}
+function parseSequenceText(raw){
+  const txt=raw.replace(/[ \t]+/g,' ');
+  const hdr=[...txt.matchAll(/Unidad did[aá]ctica de progresi[oó]n de aprendizajes/gi)];
+  const units=[];
+  for(let n=0;n<hdr.length;n++){
+    const ini=hdr[n].index+hdr[n][0].length;
+    const fin=(n+1<hdr.length)?hdr[n+1].index:txt.length;
+    const chunk=txt.slice(ini,fin);
+    const tm=chunk.match(/\s*([IVX]+\.\s*[A-ZÁÉÍÓÚ][^\n]{5,110})/);
+    let title=(tm?tm[1]:'Unidad '+(n+1)).trim().replace(/\s+\d+\.\s+Datos.*$/,'').slice(0,90);
+    const hmd=(chunk.match(/HMD\)\D{0,8}(\d+)/)||[])[1]||'';
+    const hei=(chunk.match(/HEI\)\D{0,8}(\d+)/)||[])[1]||'';
+    const cat=((chunk.match(/\bC[123]\s+[A-Za-zÁÉÍÓÚáéíóúñ ]{4,32}/)||[])[0]||'').trim().replace(/\s+C$/,'');
+    const seen={},topics=[];
+    for(const t of chunk.matchAll(/\b([IVX]+\.\d+)\.-\s*([^\n]{2,70})/g)){
+      const code=t[1];if(seen[code])continue;seen[code]=1;
+      let tt=t[2].split(/\s[IVX]+\.\d/)[0].replace(/\s+[IVX]+\.\d+\.\d.*$/,'').trim();
+      topics.push(code+' '+tt);
+    }
+    units.push({title,hmd,hei,cat,topics});
+  }
+  return units;
+}
+async function onPdf(input){
+  const f=input.files&&input.files[0];if(!f)return;
+  const st=document.getElementById('imp_status');st.textContent='Leyendo el PDF…';
+  try{
+    const txt=await pdfToText(f);
+    if(txt.replace(/\s/g,'').length<200)throw new Error('vacio');
+    const parsed=parseSequenceText(txt);
+    if(!parsed.length)throw new Error('formato');
+    buildReview(parsed);
+    st.innerHTML='<span style="color:var(--green)">✓ Detectadas '+parsed.length+' unidad(es).</span> Revisa y corrige abajo.';
+  }catch(e){
+    const reason=(e&&e.message==='cdn')?'No se pudo cargar el lector de PDF (revisa tu conexión).':(e&&e.message==='vacio')?'El PDF no tiene texto seleccionable (parece escaneado). Captura la secuencia manualmente abajo o impórtala en .json.':'No se reconoció el formato. Puedes capturarla manualmente abajo.';
+    st.innerHTML='<span style="color:var(--red)">'+reason+'</span>';
+    buildReview([{title:'',hmd:'',hei:'',cat:'',topics:[]}]);
+  }
+  input.value='';
+}
+function buildReview(units){
+  const box=document.getElementById('imp_review');
+  box.innerHTML=`<div class="card pad" style="border-top:4px solid var(--navy-2)">
+    <div class="eyebrow" style="margin:0">2. Revisa y corrige lo detectado</div>
+    <h3 style="font-family:'Space Grotesk';color:var(--navy);margin:6px 0 10px">Unidades de la secuencia</h3>
+    <div id="imp_units">${units.map((u,i)=>unitReviewHTML(u,i)).join('')}</div>
+    <button class="btn ghost sm noprint" onclick="addUnitRow()" style="margin:4px 0 14px">+ Agregar otra unidad</button>
+    <div style="border-top:1px solid var(--line);padding-top:14px">
+      <button class="btn primary" onclick="generateFromReview()">3. Generar y cargar esta secuencia</button>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:8px">Se crearán las sesiones (≈ 1 por hora HMD), con su estructura Apertura–Desarrollo–Cierre, lista para planear, ver progreso y evaluar.</div>
+    </div>
+  </div>`;
+}
+function unitReviewHTML(u,i){
+  return `<div class="card pad imp-unit" style="margin-bottom:12px;background:#faf9f5">
+    <div class="row">
+      <div style="flex:3"><label class="fld">Título de la unidad</label><input class="iu-title" value="${(u.title||'').replace(/"/g,'&quot;')}" placeholder="Ej. I. Ciudadanía Digital..."></div>
+      <div style="flex:1"><label class="fld">HMD (horas)</label><input class="iu-hmd" type="number" value="${u.hmd||''}"></div>
+      <div style="flex:1"><label class="fld">HEI (horas)</label><input class="iu-hei" type="number" value="${u.hei||''}"></div>
+    </div>
+    <div class="field"><label class="fld">Categoría</label><input class="iu-cat" value="${(u.cat||'').replace(/"/g,'&quot;')}" placeholder="Ej. C1 Ciudadanía Digital"></div>
+    <div class="field" style="margin-bottom:0"><label class="fld">Temas / contenido (uno por línea)</label><textarea class="iu-topics" rows="6" placeholder="I.1 Ciudadanía Digital&#10;I.2 Seguridad Digital">${(u.topics||[]).join('\n')}</textarea></div>
+  </div>`;
+}
+function addUnitRow(){document.getElementById('imp_units').insertAdjacentHTML('beforeend',unitReviewHTML({title:'',hmd:'',hei:'',cat:'',topics:[]}, -1));}
+function collectReview(){
+  const rows=[...document.querySelectorAll('#imp_units .imp-unit')];
+  return rows.map(r=>({
+    title:r.querySelector('.iu-title').value.trim(),
+    hmd:r.querySelector('.iu-hmd').value.trim(),
+    hei:r.querySelector('.iu-hei').value.trim(),
+    cat:r.querySelector('.iu-cat').value.trim(),
+    topics:r.querySelector('.iu-topics').value.split('\n').map(s=>s.trim()).filter(Boolean)
+  })).filter(u=>u.title||u.topics.length);
+}
+function genSession(t,cont,ae,estr,lab,topic){
+  return {t,cont,ae,preg:'¿Qué sabes ya sobre '+(topic||'este tema')+' y para qué te sirve en tu vida digital?',
+    open:['Recuperar lo que ya saben con una pregunta o lluvia de ideas.','Presentar el propósito de la sesión.'],
+    dev:['Explicación breve del contenido: '+cont+'.','Demostración guiada y práctica inmediata de los alumnos.'],
+    cierre:['Puesta en común de lo realizado.','Cierre con una conclusión o reto corto.'],
+    lab,tool:'Equipo de cómputo + internet + plataforma institucional',
+    hei:'Repasar o investigar sobre: '+cont+'.',
+    tip:'Adapta esta sesión: cambia la actividad práctica por una del Banco o un Modelo si encaja mejor.',
+    estr,ev:'Evidencia de la sesión en el portafolio digital'};
+}
+function scaffold(u,id){
+  const topics=u.topics.slice();
+  const H=Math.max(3,parseInt(u.hmd)||(topics.length+2));
+  const STR=STRATEGIES.map(s=>s.n);
+  const sessions=[];
+  sessions.push(genSession('Encuadre y diagnóstico','Presentación de la unidad y diagnóstico inicial','Reconoce los objetivos y la forma de evaluar; activa conocimientos previos.',STR[0],'Crear/abrir su carpeta de portafolio en Drive y compartirla con el docente.',topics[0]?topics[0]:'la unidad'));
+  const mid=Math.max(1,H-2);
+  const per=Math.max(1,Math.ceil(topics.length/mid));
+  for(let k=0;k<mid;k++){
+    const slice=topics.slice(k*per,(k+1)*per);
+    if(!slice.length){if(k>0)break;else slice.push('Contenido de la unidad');}
+    const cont=slice.join(' · ');
+    sessions.push(genSession(slice[0],cont,'Reconoce y aplica: '+cont+'.',STR[(k+1)%STR.length],'Práctica en el centro de cómputo aplicando: '+cont+'.',slice[0]));
+  }
+  sessions.push(genSession('Integración y evaluación','Cierre y evaluación sumativa','Integra y demuestra los aprendizajes en su portafolio.','Portafolio digital con insignias','Organizar y entregar el portafolio de la unidad (enlace en la plataforma).','la unidad'));
+  return {id,css:'unit'+(id==2?' u2':id==3?' u3':''),title:u.title||('Unidad '+id),hmd:parseInt(u.hmd)||sessions.length,hei:parseInt(u.hei)||0,cat:u.cat||('Categoría '+id),progs:'Progresiones de la unidad',metas:['Metas declaradas en la secuencia oficial de la unidad.'],obj:u.title||('Unidad '+id),toc:topics.map(t=>{const m=t.match(/^([IVX0-9.\-]+)\s*(.*)$/);return m?[m[1]+' '+m[2],'']:[t,''];}),sessions};
+}
+function generateFromReview(){
+  const data=collectReview();
+  if(!data.length){toast('Captura al menos una unidad con su título');return;}
+  const units=data.map((u,i)=>scaffold(u,i+1));
+  applyUnits(units);saveSeq();
+  toast('Secuencia generada: '+units.length+' unidad(es)');
+  goTab('secuencias');
+}
+function exportSeq(){
+  const blob=new Blob([JSON.stringify(UNITS,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='secuencia.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Descargada secuencia.json');
+}
+function importSeqFile(input){
+  const f=input.files&&input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=async()=>{try{const u=JSON.parse(r.result);if(!Array.isArray(u)||!u.length||!u[0].sessions)throw 0;applyUnits(u);await saveSeq();toast('Secuencia cargada: '+u.length+' unidad(es)');goTab('secuencias');}catch(e){toast('Archivo no válido (debe ser una secuencia exportada por esta app)');}input.value='';};
+  r.readAsText(f);
+}
+
+/* ===================== INIT ===================== */
+(async function(){
+  await loadDone();
+  await loadSeqCache();
+  renderStats();renderUnits();renderStrats();renderTools();
+  fillUnitSelects();loadSessions();renderEval();
+  await loadBankCache();renderBank();renderModelos();tryAutoBank();
+  await loadDatos();
+  renderPlan();renderEval();
+  await renderSaved();
+})();
+</script>
